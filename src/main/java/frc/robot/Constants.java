@@ -16,8 +16,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int driveLeftMasterId = 5;
-    public static final int driveRightMasterId = 8;
-    public static final int driveLeftSlaveId = 6;
-    public static final int driveRightSlaveId = 7;
+
+    public static final int DRIVE_LEFT_MASTER_ID = 7; // Front Left
+    public static final int DRIVE_RIGHT_MASTER_ID = 6; // Front right
+    public static final int DRIVE_LEFT_SLAVE_ID = 8; //  Back Left
+    public static final int DRIVE_RIGHT_SLAVE_ID = 9; // Back Right
+    
+    public static final int JOYSTICK_ID = 0;
+    public static final int GEAR_SHIFT_BUTTON_ID = 6; //What is this used for?
+
 }

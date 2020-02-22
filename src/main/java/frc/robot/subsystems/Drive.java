@@ -7,32 +7,29 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
   /**
    * Creates a new ExampleSubsystem.
    */
-  private WPI_TalonFX leftMaster;
-  private WPI_TalonFX rightMaster;
-  private WPI_TalonFX leftSlave;
-  private WPI_TalonFX rightSlave;
-  private DifferentialDrive diffDrive1;
-  private DifferentialDrive diffDrive2;
-  public Drive() {
-    leftMaster = new WPI_TalonFX(Constants.driveLeftMasterId);
-    rightMaster = new WPI_TalonFX(Constants.driveRightMasterId);
-    leftSlave = new WPI_TalonFX(Constants.driveLeftSlaveId);
-    rightSlave = new WPI_TalonFX(Constants.driveRightSlaveId);
-    diffDrive1 = new DifferentialDrive(leftMaster,rightMaster);
-    diffDrive2 = new DifferentialDrive(leftSlave, rightSlave);
+  private WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
+  private WPI_TalonFX rightMaster = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
+  private WPI_TalonFX leftSlave = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
+  private WPI_TalonFX rightSlave = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
+  private DifferentialDrive diffDrive1 = new DifferentialDrive(leftMaster,rightMaster); //Slavery still doesn't work :/
+  private DifferentialDrive diffDrive2 = new DifferentialDrive(leftSlave, rightSlave);
 
+  public Drive() {
+    //leftSlave.set(ControlMode.Follower, DRIVE_LEFT_MASTER_ID);
+    //rightSlave.set(ControlMode.Follower, DRIVE_RIGHT_MASTER_ID);
+    //leftSlave.follow(leftMaster);
+    //rightSlave.follow(rightMaster);
   }
   
   public void displayOnShuffleboard() {
@@ -42,10 +39,21 @@ public class Drive extends SubsystemBase {
     SmartDashboard.putData("rightSlave", rightSlave);
     SmartDashboard.putData("diffDrive1", diffDrive1);
   }
+
+  private double speedMultiplier = 1;
+
   public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive1.arcadeDrive(xSpeed, zRotation);
-    diffDrive2.arcadeDrive(xSpeed, zRotation);
+    diffDrive1.arcadeDrive(speedMultiplier * xSpeed, zRotation);
+    diffDrive2.arcadeDrive(speedMultiplier * xSpeed, zRotation);
   }
+
+  public void highGear() {
+    speedMultiplier = 1;
+  }
+  public void lowGear() {
+    speedMultiplier = .5;
+  }
+
   @Override
   public void periodic() {
     displayOnShuffleboard();
