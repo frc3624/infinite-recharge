@@ -23,14 +23,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Climb climb = new Climb();
 
   private final Joystick joystick = new Joystick(0);
   private final JoystickButton climbButton = new JoystickButton(joystick, 1);
 
   private final Climber c = new Climber(climb, 1.0);
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
 
@@ -60,6 +58,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return c;
   }
 }
