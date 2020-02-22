@@ -10,8 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveTrain;
+import frc.robot.commands.RunShooterMotor;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,10 +24,11 @@ import frc.robot.subsystems.Drive;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public static XboxController driver1 = new XboxController(0);
+  private static XboxController driver1 = new XboxController(0);
   private final Drive drive = new Drive();
-
-  private final DriveTrain driveTrain = new DriveTrain(drive);
+  private final JoystickButton button1 = new JoystickButton(driver1, 1);
+  private final DriveTrain driveTrain = new DriveTrain(drive, driver1);
+  private final Shooter shoot1 = new Shooter();
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -41,6 +45,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     drive.setDefaultCommand(driveTrain);
+    button1.whenPressed(new RunShooterMotor(shoot1, 0.43));
+    button1.whenReleased(new RunShooterMotor(shoot1, 0));
   }
 
 

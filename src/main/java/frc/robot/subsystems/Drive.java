@@ -19,32 +19,37 @@ public class Drive extends SubsystemBase {
   /**
    * Creates a new ExampleSubsystem.
    */
-  private WPI_TalonFX leftMaster;
-  private WPI_TalonFX rightMaster;
-  private WPI_TalonFX leftSlave;
-  private WPI_TalonFX rightSlave;
+  private WPI_TalonFX frontLeft;
+  private WPI_TalonFX frontRight;
+  private WPI_TalonFX backLeft;
+  private WPI_TalonFX backRight;
   private DifferentialDrive diffDrive1;
   private DifferentialDrive diffDrive2;
   public Drive() {
-    leftMaster = new WPI_TalonFX(Constants.driveLeftMasterId);
-    rightMaster = new WPI_TalonFX(Constants.driveRightMasterId);
-    leftSlave = new WPI_TalonFX(Constants.driveLeftSlaveId);
-    rightSlave = new WPI_TalonFX(Constants.driveRightSlaveId);
-    diffDrive1 = new DifferentialDrive(leftMaster,rightMaster);
-    diffDrive2 = new DifferentialDrive(leftSlave, rightSlave);
-
+    frontLeft = new WPI_TalonFX(Constants.driveFrontLeftId);
+    frontRight = new WPI_TalonFX(Constants.driveFrontRightId);
+    backLeft = new WPI_TalonFX(Constants.driveBackLeftId);
+    backRight = new WPI_TalonFX(Constants.driveBackRightId);
+    diffDrive1 = new DifferentialDrive(frontLeft,frontRight);
+    diffDrive2 = new DifferentialDrive(backLeft, backRight);
   }
   
   public void displayOnShuffleboard() {
-    SmartDashboard.putData("leftMaster", leftMaster);
-    SmartDashboard.putData("rightMaster", rightMaster);
-    SmartDashboard.putData("leftSlave", leftSlave);
-    SmartDashboard.putData("rightSlave", rightSlave);
+    SmartDashboard.putData("leftMaster", frontLeft);
+    SmartDashboard.putData("rightMaster", frontRight);
+    SmartDashboard.putData("leftSlave", backLeft);
+    SmartDashboard.putData("rightSlave", backRight);
     SmartDashboard.putData("diffDrive1", diffDrive1);
   }
   public void arcadeDrive(double xSpeed, double zRotation) {
     diffDrive1.arcadeDrive(xSpeed, zRotation);
     diffDrive2.arcadeDrive(xSpeed, zRotation);
+  }
+  public void setMotorSpeed(double speed) {
+    frontLeft.set(ControlMode.PercentOutput, speed);
+    frontRight.set(ControlMode.PercentOutput, speed);
+    backLeft.set(ControlMode.PercentOutput, speed);
+    backRight.set(ControlMode.PercentOutput, speed);
   }
   @Override
   public void periodic() {
