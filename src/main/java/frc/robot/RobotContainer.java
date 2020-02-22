@@ -24,12 +24,12 @@ import static frc.robot.Constants.*;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static XboxController driver1 = new XboxController(JOYSTICK_ID);
-  private final JoystickButton speedShift = new JoystickButton(driver1, GEAR_SHIFT_BUTTON_ID);
+  private final JoystickButton speedShift = new JoystickButton(driver1, SPEED_SHIFT_BUTTON_ID);
 
   private final Drive drive = new Drive();
 
   private final DriveTrain dt = new DriveTrain(drive);
-  private final SpeedShift gs = new SpeedShift(drive, dt);
+  private final SpeedShift gs = new SpeedShift(drive);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

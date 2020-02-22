@@ -23,6 +23,6 @@ public final class Constants {
     public static final int DRIVE_RIGHT_SLAVE_ID = 9; // Back Right
     
     public static final int JOYSTICK_ID = 0;
-    public static final int GEAR_SHIFT_BUTTON_ID = 6; //What is this used for?
+    public static final int SPEED_SHIFT_BUTTON_ID = 6; //What is this used for?
 
 }

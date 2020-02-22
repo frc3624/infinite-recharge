@@ -16,11 +16,9 @@ public class SpeedShift extends InstantCommand {
    * Creates a new GearShift.
    */
   private final Drive drive;
-  private final DriveTrain driveTrain;
 
-  public SpeedShift(Drive drive, DriveTrain driveTrain) {
+  public SpeedShift(Drive drive) {
     this.drive = drive;
-    this.driveTrain = driveTrain;
     addRequirements(drive);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,15 +27,11 @@ public class SpeedShift extends InstantCommand {
   @Override
   public void initialize() {
     System.out.println("oof");
-    /*if (drive.getCurrentCommand() == driveTrain) {
-      slowDriveTrain.schedule();
-      drive.setDefaultCommand(slowDriveTrain);
-    }
-    if (drive.getCurrentCommand() == slowDriveTrain) {
-      driveTrain.schedule();
-      drive.setDefaultCommand(driveTrain);
-    }*/
-
     
+    if(Drive.speedMultiplier == 1) {
+      drive.lowGear();
+    } else {
+      drive.highGear();
+    }
   }
 }

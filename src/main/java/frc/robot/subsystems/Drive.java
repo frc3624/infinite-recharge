@@ -40,18 +40,18 @@ public class Drive extends SubsystemBase {
     SmartDashboard.putData("diffDrive1", diffDrive1);
   }
 
-  private double speedMultiplier = 1;
-
-  public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive1.arcadeDrive(speedMultiplier * xSpeed, zRotation);
-    diffDrive2.arcadeDrive(speedMultiplier * xSpeed, zRotation);
-  }
+  public static double speedMultiplier = 1;
 
   public void highGear() {
     speedMultiplier = 1;
   }
   public void lowGear() {
     speedMultiplier = .5;
+  }
+
+  public void arcadeDrive(double xSpeed, double zRotation) {
+    diffDrive1.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * zRotation);
+    diffDrive2.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * zRotation);
   }
 
   @Override
