@@ -7,55 +7,32 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
-  /**
-   * Creates a new ExampleSubsystem.
-   */
-  private WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
-  private WPI_TalonFX rightMaster = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
-  private WPI_TalonFX leftSlave = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
-  private WPI_TalonFX rightSlave = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
-  private DifferentialDrive diffDrive1 = new DifferentialDrive(leftMaster,rightMaster); //Slavery still doesn't work :/
-  private DifferentialDrive diffDrive2 = new DifferentialDrive(leftSlave, rightSlave);
+  WPI_TalonFX leftMotor1 = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
+  WPI_TalonFX leftMotor2 = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
+  WPI_TalonFX rightMotor1 = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
+  WPI_TalonFX rightMotor2 = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
 
+  DifferentialDrive diffDrive = new DifferentialDrive(leftMotor1, rightMotor1);
   public Drive() {
-    //leftSlave.set(ControlMode.Follower, DRIVE_LEFT_MASTER_ID);
-    //rightSlave.set(ControlMode.Follower, DRIVE_RIGHT_MASTER_ID);
-    //leftSlave.follow(leftMaster);
-    //rightSlave.follow(rightMaster);
+    leftMotor2.follow(leftMotor1);
+    rightMotor2.follow(rightMotor1);
   }
-  
-  public void displayOnShuffleboard() {
-    SmartDashboard.putData("leftMaster", leftMaster);
-    SmartDashboard.putData("rightMaster", rightMaster);
-    SmartDashboard.putData("leftSlave", leftSlave);
-    SmartDashboard.putData("rightSlave", rightSlave);
-    SmartDashboard.putData("diffDrive1", diffDrive1);
-  }
-
-  private double speedMultiplier = 1;
-
-  public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive1.arcadeDrive(speedMultiplier * xSpeed, zRotation);
-    diffDrive2.arcadeDrive(speedMultiplier * xSpeed, zRotation);
-  }
-
-  public void highGear() {
-    speedMultiplier = 1;
-  }
-  public void lowGear() {
-    speedMultiplier = .5;
-  }
-
+  public void arcadeDrive(double xSpeed, double yRotation)
+  {
+    diffDrive.arcadeDrive(xSpeed*-1, yRotation);
+  } 
   @Override
   public void periodic() {
-    displayOnShuffleboard();
+    // This method will be called once per scheduler run
   }
 }
