@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
   /**
@@ -26,10 +26,10 @@ public class Drive extends SubsystemBase {
   private DifferentialDrive diffDrive1;
   private DifferentialDrive diffDrive2;
   public Drive() {
-    frontLeft = new WPI_TalonFX(Constants.driveFrontLeftId);
-    frontRight = new WPI_TalonFX(Constants.driveFrontRightId);
-    backLeft = new WPI_TalonFX(Constants.driveBackLeftId);
-    backRight = new WPI_TalonFX(Constants.driveBackRightId);
+    frontLeft = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
+    frontRight = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
+    backLeft = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
+    backRight = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
     diffDrive1 = new DifferentialDrive(frontLeft,frontRight);
     diffDrive2 = new DifferentialDrive(backLeft, backRight);
   }

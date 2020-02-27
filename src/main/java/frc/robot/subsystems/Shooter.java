@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
 
 public class Shooter extends SubsystemBase {
   /**
@@ -19,7 +19,7 @@ public class Shooter extends SubsystemBase {
    */
   private WPI_TalonFX shoot;
   public Shooter() {
-    shoot = new WPI_TalonFX(Constants.shooter);
+    shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
   }
 
   @Override

@@ -45,7 +45,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     drive.setDefaultCommand(driveTrain);
-    button1.whenPressed(new RunShooterMotor(shoot1, 0.43));
+    button1.whenPressed(new RunShooterMotor(shoot1, 0.42));
     button1.whenReleased(new RunShooterMotor(shoot1, 0));
   }
 
