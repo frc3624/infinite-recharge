@@ -13,28 +13,28 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
-  WPI_TalonFX leftMotor1 = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
-  WPI_TalonFX leftMotor2 = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
-  WPI_TalonFX rightMotor1 = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
-  WPI_TalonFX rightMotor2 = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
+  WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
+  WPI_TalonFX leftSlave = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
+  WPI_TalonFX rightMaster = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
+  WPI_TalonFX rightSlave = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
 
-  DifferentialDrive diffDrive = new DifferentialDrive(leftMotor1, rightMotor1);
+  DifferentialDrive diffDrive = new DifferentialDrive(leftMaster, rightMaster);
   public Drive() {
-    leftMotor2.follow(leftMotor1);
-    rightMotor2.follow(rightMotor1);
+    leftSlave.follow(leftMaster);
+    rightSlave.follow(rightMaster);
   }
-<<<<<<< HEAD
   
   public void displayOnShuffleboard() {
     SmartDashboard.putData("leftMaster", leftMaster);
     SmartDashboard.putData("rightMaster", rightMaster);
     SmartDashboard.putData("leftSlave", leftSlave);
     SmartDashboard.putData("rightSlave", rightSlave);
-    SmartDashboard.putData("diffDrive1", diffDrive1);
+    SmartDashboard.putData("diffDrive1", diffDrive);
   }
 
   public static double speedMultiplier = 1;
@@ -47,16 +47,9 @@ public class Drive extends SubsystemBase {
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive1.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * zRotation);
-    diffDrive2.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * zRotation);
+    diffDrive.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * zRotation);
   }
-
-=======
-  public void arcadeDrive(double xSpeed, double yRotation)
-  {
-    diffDrive.arcadeDrive(xSpeed*-1, yRotation);
-  } 
->>>>>>> 948b7923640a7a4e180a54278550b066249ad97a
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
