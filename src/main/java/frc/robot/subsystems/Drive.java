@@ -7,11 +7,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -37,10 +34,10 @@ public class Drive extends SubsystemBase {
     SmartDashboard.putData("diffDrive1", diffDrive);
   }
 
-  public static double speedMultiplier = 1;
+  public static double speedMultiplier = 0.8; //Aryan wanted this plz no kill Kyle dad
 
   public void highGear() {
-    speedMultiplier = 1;
+    speedMultiplier = 0.8;
   }
   public void lowGear() {
     speedMultiplier = .5;

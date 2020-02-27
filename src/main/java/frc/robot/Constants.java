@@ -17,10 +17,10 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final int DRIVE_LEFT_MASTER_ID = 7; // Front Left
-    public static final int DRIVE_RIGHT_MASTER_ID = 6; // Front right
-    public static final int DRIVE_LEFT_SLAVE_ID = 8; //  Back Left
-    public static final int DRIVE_RIGHT_SLAVE_ID = 9; // Back Right
+    public static final int DRIVE_LEFT_MASTER_ID = 1; // Front Left
+    public static final int DRIVE_RIGHT_MASTER_ID = 3; // Front right
+    public static final int DRIVE_LEFT_SLAVE_ID = 2; //  Back Left
+    public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
     
     public static final int JOYSTICK_ID = 0;
     public static final int SPEED_SHIFT_BUTTON_ID = 6; //What is this used for?
