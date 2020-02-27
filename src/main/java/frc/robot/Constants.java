@@ -31,6 +31,7 @@ public final class Constants {
 
     public static final int JOYSTICK_ID = 0;
     public static final int SPEED_SHIFT_BUTTON_ID = 6;
+    public static final int DEFENSE_SHIFT_ID = 5;
     public static final int SHOOT_BUTTON_ID = 1;
     public static final int CLIMB_BUTTON_ID = 2;
 }

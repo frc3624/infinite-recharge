@@ -38,17 +38,31 @@ public class Drive extends SubsystemBase {
 
   public void highGear() {
     speedMultiplier = 0.8;
+    System.out.println("high gear");
   }
   public void lowGear() {
     speedMultiplier = .5;
+    System.out.println("low gear");
+  }
+  public void defenseGear() {
+    speedMultiplier = 1;
+    System.out.println("defense gear");
+  }
+
+  public boolean isHighGear() {
+    if(speedMultiplier == 0.8) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * zRotation);
+    diffDrive.arcadeDrive(speedMultiplier * xSpeed, (0.9 * speedMultiplier) * zRotation);
   }
   
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    System.out.println(speedMultiplier);
   }
 }

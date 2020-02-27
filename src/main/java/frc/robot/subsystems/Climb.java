@@ -7,25 +7,29 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
-public class Shooter extends SubsystemBase {
+public class Climb extends SubsystemBase {
   /**
-   * Creates a new Shootr.
+   * Creates a new Climb.
    */
-  private WPI_TalonFX shoot;
-  public Shooter() {
-    shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
+  private final CANSparkMax climbLeft = new CANSparkMax(LEFT_CLIMB_MOTOR_ID, MotorType.kBrushless);
+  private final CANSparkMax climbRight = new CANSparkMax(RIGHT_CLIMB_MOTOR_ID, MotorType.kBrushless);
+  public Climb() {
+
+  }
+  public void move(double speed) {
+    //The two motors rotate in opposite directions
+    climbLeft.set(speed);
+    climbRight.set(-speed);
+    
   }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-  public void setShootMotorSpeed(double a) {
-    shoot.set(ControlMode.PercentOutput, a);
   }
 }

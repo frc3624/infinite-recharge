@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.commands.SpeedShift.*;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 
@@ -26,17 +28,21 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static XboxController driver1 = new XboxController(JOYSTICK_ID);
   private final JoystickButton speedShift = new JoystickButton(driver1, SPEED_SHIFT_BUTTON_ID);
+  private final JoystickButton defenseShift = new JoystickButton(driver1, DEFENSE_SHIFT_ID);
   private final JoystickButton shootButton = new JoystickButton(driver1, SHOOT_BUTTON_ID);
-  //private final JoystickButton climbButton = new JoystickButton(driver1, CLIMB_BUTTON_ID);
+  private final JoystickButton climbButton = new JoystickButton(driver1, CLIMB_BUTTON_ID);
 
   private final Drive drive = new Drive();
   private final Shooter shooter = new Shooter();
-  //private final Climb climb = new Climb();
+  private final Climb climb = new Climb();
 
   private final DriveTrain dt = new DriveTrain(drive, driver1);
-  private final SpeedShift gs = new SpeedShift(drive);
+  private final DefenseShift ds = new DefenseShift(drive);
+  private final LowShift ls = new LowShift(drive);
+  private final HighShift hs = new HighShift(drive);
   private final RunShooterMotor rsm = new RunShooterMotor(shooter, 0.31);
-  //private final Climber c = new Climber(climb, 1.0);
+  private final Climber c = new Climber(climb, 1.0);
+  private final ConditionalCommand ss = new ConditionalCommand(ls, hs , drive::isHighGear);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -54,9 +60,11 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    speedShift.whenPressed(gs);
+    speedShift.whenPressed(ss);
     shootButton.whileHeld(rsm);
-    //climbButton.whileHeld(c);
+    defenseShift.whenPressed(ds);
+    climbButton.whileHeld(c);
+
   }
 
   /**
