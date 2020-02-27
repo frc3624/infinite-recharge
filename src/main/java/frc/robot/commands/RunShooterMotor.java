@@ -7,20 +7,23 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.*;
 
 public class RunShooterMotor extends CommandBase {
   /**
-   * Creates a new Shooter.
+   * Creates a new ShootBall.
    */
-  private Shooter shooter;
-  private double speed;
-  public RunShooterMotor(Shooter shooter, double speed) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.shooter = shooter;
-    this.speed = speed;
+  Shooter shooter;
+  XboxController controller;
+
+  public RunShooterMotor(Shooter subsystem, XboxController m_controller) {
+    shooter = subsystem;
+    controller = m_controller;
     addRequirements(shooter);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -31,13 +34,13 @@ public class RunShooterMotor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(speed);
+    shooter.setShootMotorSpeed(controller.getY(Hand.kRight));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setShootMotorSpeed(0.0);
+    shooter.setShootMotorSpeed(0);
   }
 
   // Returns true when the command should end.

@@ -40,7 +40,7 @@ public class RobotContainer {
   private final DefenseShift ds = new DefenseShift(drive);
   private final LowShift ls = new LowShift(drive);
   private final HighShift hs = new HighShift(drive);
-  private final RunShooterMotor rsm = new RunShooterMotor(shooter, 0.31);
+  private final RunShooterMotor rsm = new RunShooterMotor(shooter, driver1);
   private final Climber c = new Climber(climb, 1.0);
   private final ConditionalCommand ss = new ConditionalCommand(ls, hs , drive::isHighGear);
 
