@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,30 +7,20 @@
 
 package frc.robot.commands;
 
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shooter;
 
-/**
- * An example command that uses an example subsystem.
- */
-public class DriveTrain extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Drive drive;
-  private XboxController driveController;
-
+public class RunShooterMotor extends CommandBase {
   /**
-   * Creates a new ExampleCommand.
-   *
-   * @param drive The subsystem used by this command.
+   * Creates a new Shooter.
    */
-  public DriveTrain(Drive drive, XboxController driveController) {
-    this.drive = drive;
-    this.driveController = driveController;
+  private Shooter shooter;
+  private double speed;
+  public RunShooterMotor(Shooter shooter, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drive);
+    this.shooter = shooter;
+    this.speed = speed;
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -41,12 +31,13 @@ public class DriveTrain extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drive.arcadeDrive(driveController.getY(Hand.kLeft), driveController.getX(Hand.kRight));
+    shooter.setShootMotorSpeed(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    shooter.setShootMotorSpeed(0.0);
   }
 
   // Returns true when the command should end.

@@ -16,23 +16,30 @@ import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 
 /**
- * This class is where the bulk of the robot should be declared.  Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
- * (including subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static XboxController driver1 = new XboxController(JOYSTICK_ID);
   private final JoystickButton speedShift = new JoystickButton(driver1, SPEED_SHIFT_BUTTON_ID);
+  private final JoystickButton shootButton = new JoystickButton(driver1, SHOOT_BUTTON_ID);
+  //private final JoystickButton climbButton = new JoystickButton(driver1, CLIMB_BUTTON_ID);
 
   private final Drive drive = new Drive();
+  private final Shooter shooter = new Shooter();
+  //private final Climb climb = new Climb();
 
-  private final DriveTrain dt = new DriveTrain(drive);
+  private final DriveTrain dt = new DriveTrain(drive, driver1);
   private final SpeedShift gs = new SpeedShift(drive);
+  private final RunShooterMotor rsm = new RunShooterMotor(shooter, 0.31);
+  //private final Climber c = new Climber(climb, 1.0);
 
   /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
+   * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
@@ -41,16 +48,16 @@ public class RobotContainer {
   }
 
   /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by instantiating a {@link GenericHID} or one of its subclasses
+   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
     speedShift.whenPressed(gs);
-
+    shootButton.whileHeld(rsm);
+    //climbButton.whileHeld(c);
   }
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
