@@ -31,10 +31,12 @@ public class RobotContainer {
   private final JoystickButton defenseShift = new JoystickButton(driver1, DEFENSE_SHIFT_ID);
   private final JoystickButton shootButton = new JoystickButton(driver1, SHOOT_BUTTON_ID);
   private final JoystickButton climbButton = new JoystickButton(driver1, CLIMB_BUTTON_ID);
+  private final JoystickButton intakeButton = new JoystickButton(driver1, INTAKE_BUTTON_ID);
 
   private final Drive drive = new Drive();
   private final Shooter shooter = new Shooter();
   private final Climb climb = new Climb();
+  private final Intake intake = new Intake();
 
   private final DriveTrain dt = new DriveTrain(drive, driver1);
   private final DefenseShift ds = new DefenseShift(drive);
@@ -43,6 +45,7 @@ public class RobotContainer {
   private final RunShooterMotor rsm = new RunShooterMotor(shooter, driver1);
   private final Climber c = new Climber(climb, 1.0);
   private final ConditionalCommand ss = new ConditionalCommand(ls, hs , drive::isHighGear);
+  private final Intaker i = new Intaker(intake, 1);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -64,7 +67,7 @@ public class RobotContainer {
     shootButton.whileHeld(rsm);
     defenseShift.whenPressed(ds);
     climbButton.whileHeld(c);
-
+    intakeButton.whileHeld(i);
   }
 
   /**

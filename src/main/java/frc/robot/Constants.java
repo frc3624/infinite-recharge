@@ -25,6 +25,7 @@ public final class Constants {
     public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
 
     public static final int SHOOTER_MOTOR_ID = 7;
+    public static final int INTAKE_MOTOR_ID = 9;
 
     public static final int LEFT_CLIMB_MOTOR_ID = 5;
     public static final int RIGHT_CLIMB_MOTOR_ID = 6;
@@ -34,4 +35,5 @@ public final class Constants {
     public static final int DEFENSE_SHIFT_ID = 5;
     public static final int SHOOT_BUTTON_ID = 1;
     public static final int CLIMB_BUTTON_ID = 2;
+    public static final int INTAKE_BUTTON_ID = 3;
 }
