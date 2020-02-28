@@ -27,6 +27,7 @@ import static frc.robot.Constants.*;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static XboxController driver1 = new XboxController(JOYSTICK_ID);
+  public static XboxController driver2 = new XboxController(1);
   private final JoystickButton speedShift = new JoystickButton(driver1, SPEED_SHIFT_BUTTON_ID);
   private final JoystickButton defenseShift = new JoystickButton(driver1, DEFENSE_SHIFT_ID);
   private final JoystickButton shootButton = new JoystickButton(driver1, SHOOT_BUTTON_ID);
@@ -42,7 +43,7 @@ public class RobotContainer {
   private final DefenseShift ds = new DefenseShift(drive);
   private final LowShift ls = new LowShift(drive);
   private final HighShift hs = new HighShift(drive);
-  private final RunShooterMotor rsm = new RunShooterMotor(shooter, driver1);
+  private final RunShooterMotor rsm = new RunShooterMotor(shooter, driver2);
   private final Climber c = new Climber(climb, 1.0);
   private final ConditionalCommand ss = new ConditionalCommand(ls, hs , drive::isHighGear);
   private final Intaker i = new Intaker(intake, 1);

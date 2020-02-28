@@ -34,7 +34,7 @@ public class RunShooterMotor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(controller.getY(Hand.kRight));
+    shooter.setShootMotorSpeed(controller.getY());
   }
 
   // Called once the command ends or is interrupted.
