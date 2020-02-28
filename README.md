@@ -14,6 +14,7 @@ What we still need to do (probably longer than this list lol):
 - Autonomous
 - Get Limelight and PathViewer to work
 - Use 2 controllers and decide on controls
+- Make the robot climb
 
 ## Controls
 
