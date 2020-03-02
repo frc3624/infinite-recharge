@@ -13,13 +13,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
-public class Intake extends SubsystemBase {
+public class BallTrack extends SubsystemBase {
   /**
-   * Creates a new Intake.
+   * Creates a new BallTrack.
    */
-  WPI_TalonSRX intakeMotor = new WPI_TalonSRX(8);
-
-  public Intake() {
+  private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
+  public BallTrack() {
 
   }
 
@@ -27,8 +26,7 @@ public class Intake extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
-  public void spinIntakeWheels(double speed) {
-    intakeMotor.set(ControlMode.PercentOutput, speed);
+  public void setMotorSpeed(double a) {
+    ballTrack.set(ControlMode.PercentOutput, a);
   }
 }

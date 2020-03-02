@@ -7,22 +7,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.BallTrack;
 
-public class RunShooterMotor extends CommandBase {
+public class RunBallTrack extends CommandBase {
   /**
-   * Creates a new ShootBall.
+   * Creates a new RunBallTrack.
    */
-  Shooter shooter;
-  XboxController controller;
-
-  public RunShooterMotor(Shooter subsystem, XboxController m_controller) {
-    shooter = subsystem;
-    controller = m_controller;
-    addRequirements(shooter);
+  private final BallTrack ballTrack;
+  private double speed;
+  public RunBallTrack(BallTrack ballTrack, double speed) {
+    this.ballTrack = ballTrack;
+    addRequirements(ballTrack);
+    this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -34,13 +31,13 @@ public class RunShooterMotor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(0.48);
+    ballTrack.setMotorSpeed(1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setShootMotorSpeed(0);
+    ballTrack.setMotorSpeed(speed);
   }
 
   // Returns true when the command should end.

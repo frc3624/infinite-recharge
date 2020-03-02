@@ -23,16 +23,21 @@ public class Shooter extends SubsystemBase {
   double gI = 0;
   double gD = 0;
   private final int MAXRPM = 5200;
-  private WPI_TalonFX shoot;
+  private WPI_TalonFX shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
 
   public Shooter() {
-    shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
+    /*
     shoot.config_kP(0, gP);
     shoot.config_kI(0, gI);
-    shoot.config_kD(0, gD);
+    shoot.config_kD(0, gD);*/
   }
 
-  public void displayOnShuffleboard() {
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
+
+  /*public void displayOnShuffleboard() {
     SmartDashboard.putNumber("Velocity", shoot.getSelectedSensorVelocity());
   }
 
@@ -43,12 +48,8 @@ public class Shooter extends SubsystemBase {
 
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
-
+  */
   public void setShootMotorSpeed(double a) {
-    shoot.set(ControlMode.Velocity, a * MAXRPM);
+    shoot.set(ControlMode.PercentOutput, a);
   }
 }
