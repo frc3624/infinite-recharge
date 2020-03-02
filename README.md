@@ -21,7 +21,8 @@ What we still need to do (probably longer than this list lol):
 **On an Xbox Controller**
 - Left Stick: (Move front and back) Right Stick: (Left and Right)
 - Ball Shooter: A Button
-- Intake Button: X Button
+- Ball Track Inwards: X Button
+- Ball Track Outwards: Y Button
 - Climb Button: B Button
 - High/Low Speed Shift: Right Bumper
 - Defense Shift: Left Bumper
