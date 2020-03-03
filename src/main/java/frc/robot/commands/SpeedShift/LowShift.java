@@ -12,18 +12,13 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
 
 public class LowShift extends InstantCommand {
-  /**
-   * Creates a new GearShift.
-   */
   private final Drive drive;
 
   public LowShift(Drive drive) {
     this.drive = drive;
     addRequirements(drive);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     drive.lowGear();

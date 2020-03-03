@@ -15,13 +15,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 public class Shooter extends SubsystemBase {
-  /**
-   * Creates a new Shootr.
-   */
   private final static double SHOOTER_WHEEL_RADIUS = 2.0 / 12.0;
-  double gP = 1;
-  double gI = 0;
-  double gD = 0;
+  double kP = 1;
+  double kI = 0;
+  double kD = 0;
   private final int MAXRPM = 5200;
   private WPI_TalonFX shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
 

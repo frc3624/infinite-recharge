@@ -14,10 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 public class Intake extends SubsystemBase {
-  /**
-   * Creates a new Intake.
-   */
-  WPI_TalonSRX intakeMotor = new WPI_TalonSRX(8);
+  WPI_TalonSRX intakeMotor = new WPI_TalonSRX(INTAKE_MOTOR_ID);
 
   public Intake() {
 

@@ -34,8 +34,7 @@ public class Drive extends SubsystemBase {
     SmartDashboard.putData("diffDrive1", diffDrive);
   }
 
-  public static double speedMultiplier = 0.8; //Aryan wanted this plz no kill Kyle dad
-
+  public static double speedMultiplier = 0.8; 
   public void highGear() {
     speedMultiplier = 0.8;
     System.out.println("high gear");

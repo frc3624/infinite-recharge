@@ -14,9 +14,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 public class BallTrack extends SubsystemBase {
-  /**
-   * Creates a new BallTrack.
-   */
   private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
   public BallTrack() {
 

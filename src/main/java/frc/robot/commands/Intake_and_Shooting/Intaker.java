@@ -5,42 +5,34 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Intake_and_Shooting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BallTrack;
+import frc.robot.subsystems.Intake;
 
-public class RunBallTrack extends CommandBase {
-  /**
-   * Creates a new RunBallTrack.
-   */
-  private final BallTrack ballTrack;
-  private double speed;
-  public RunBallTrack(BallTrack ballTrack, double speed) {
-    this.ballTrack = ballTrack;
-    addRequirements(ballTrack);
-    this.speed = speed;
-    // Use addRequirements() here to declare subsystem dependencies.
+public class Intaker extends CommandBase {
+  private final Intake intake;
+  private final double speed;
+  public Intaker(Intake intake, double speed) {
+    this.intake = intake;
+    this.speed =speed;
+    addRequirements(intake);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ballTrack.setMotorSpeed(1);
+    intake.spinIntakeWheels(speed);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    ballTrack.setMotorSpeed(speed);
+    intake.spinIntakeWheels(0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
