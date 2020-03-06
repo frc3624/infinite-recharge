@@ -5,18 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Climbing;
+package frc.robot.commands.intake_and_shooting;
 
+import edu.wpi.first.wpilibj.XboxController;
+//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.*;
 
-public class Climber extends CommandBase {
-  private final Climb climb;
-  private final double speed;
-  public Climber(Climb c, double speed) {
-    this.climb =c;
-    addRequirements(c);
-    this.speed = speed;
+public class Shoot extends CommandBase {
+  Shooter shooter;
+  XboxController controller;
+
+  public Shoot(Shooter subsystem, XboxController m_controller) {
+    shooter = subsystem;
+    controller = m_controller;
+    addRequirements(shooter);
   }
 
   @Override
@@ -25,12 +28,12 @@ public class Climber extends CommandBase {
 
   @Override
   public void execute() {
-    climb.move(speed);
+    shooter.setShootMotorSpeed(0.48);
   }
 
   @Override
   public void end(boolean interrupted) {
-    climb.move(0);
+    shooter.setShootMotorSpeed(0);
   }
 
   @Override

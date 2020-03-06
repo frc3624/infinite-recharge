@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Intake_and_Shooting;
+package frc.robot.commands.intake_and_shooting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallTrack;
@@ -16,8 +16,9 @@ public class RunBallTrack extends CommandBase {
   private double speed;
   public RunBallTrack(BallTrack ballTrack, double speed) {
     this.ballTrack = ballTrack;
-    addRequirements(ballTrack);
     this.speed = speed;
+    addRequirements(ballTrack);
+    
   }
 
   @Override

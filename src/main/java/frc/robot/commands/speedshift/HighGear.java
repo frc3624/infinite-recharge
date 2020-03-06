@@ -11,16 +11,16 @@ package frc.robot.commands.SpeedShift;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Drive;
 
-public class DefenseShift extends InstantCommand {
+public class HighGear extends InstantCommand {
   private final Drive drive;
 
-  public DefenseShift(Drive drive) {
+  public HighGear(Drive drive) {
     this.drive = drive;
     addRequirements(drive);
   }
 
   @Override
   public void initialize() {
-    drive.defenseGear();
+    drive.highGear();
   }
 }

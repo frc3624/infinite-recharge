@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Intake_and_Shooting;
+package frc.robot.commands.climbing;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Climber;
 
-public class Intaker extends CommandBase {
-  private final Intake intake;
+public class Climb extends CommandBase {
+  private final Climber climber;
   private final double speed;
-  public Intaker(Intake intake, double speed) {
-    this.intake = intake;
-    this.speed =speed;
-    addRequirements(intake);
+  public Climb(Climber climber, double speed) {
+    this.climber =climber;
+    this.speed = speed;
+    addRequirements(climber);
   }
 
   @Override
@@ -25,12 +25,12 @@ public class Intaker extends CommandBase {
 
   @Override
   public void execute() {
-    intake.spinIntakeWheels(speed);
+    climber.move(speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    intake.spinIntakeWheels(0);
+    climber.move(0);
   }
 
   @Override

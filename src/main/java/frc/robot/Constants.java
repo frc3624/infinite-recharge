@@ -25,7 +25,7 @@ public final class Constants {
     public static final int DRIVE_LEFT_SLAVE_ID = 2; // Back Left
     public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
 
-    //Shooting and picking up lemons
+    //Shooting and picking up balls
     public static final int SHOOTER_MOTOR_ID = 7;
     public static final int BALL_TRACK_ID = 11;
     public static final int INTAKE_MOTOR_ID = 10;
@@ -47,13 +47,14 @@ public final class Constants {
     //Controller stuff
     public static final int XBOX_1_ID = 0;
     public static final int XBOX_2_ID = 1;
-    public static final int SPEED_SHIFT_BUTTON_ID = 6;
-    public static final int DEFENSE_SHIFT_ID = 5;
-
-    public static final int SHOOT_BUTTON_ID = 1;
-    public static final int INTAKE_BUTTON_ID = 3; //We'll sort this out later :/
-    public static final int BALL_TRACK_IN_ID = 3;
-    public static final int BALL_TRACK_OUT_ID = 4;
-
-    public static final int CLIMB_BUTTON_ID = 2;
+    public static final int BUTTON_A = 1;
+    public static final int BUTTON_B = 2;
+    public static final int BUTTON_X = 3;
+    public static final int BUTTON_Y = 4;
+    public static final int BUTTON_LB = 5;
+    public static final int BUTTON_RB = 6;
+    public static final int LEFT_TRIGGER = 2; //axis number
+    public static final int RIGHT_TRIGGER = 3; //axis number
+    public static final int DPAD_UP = ;
+    public static final int DPAD_DOWN = ;
 }

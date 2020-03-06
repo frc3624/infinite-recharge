@@ -16,7 +16,6 @@ public class DriveTrain extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drive drive;
   private XboxController driveController;
-
   /**
    * @param drive The subsystem used by this command.
    */

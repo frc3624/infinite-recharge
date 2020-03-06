@@ -14,16 +14,16 @@ public class FalconCooler extends InstantCommand {
   /**
    * Creates a new FalconCooler.
    */
-  private final FalconCool fc;
+  private final FalconCool falconCool;
   public FalconCooler(FalconCool falconCool) {
-    this.fc = falconCool;
-    addRequirements(fc);
+    this.falconCool = falconCool;
+    addRequirements(falconCool);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    fc.changePiston();
+    falconCool.changePiston();
   }
 }

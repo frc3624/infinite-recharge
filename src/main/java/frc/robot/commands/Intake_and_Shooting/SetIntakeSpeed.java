@@ -5,21 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Intake_and_Shooting;
+package frc.robot.commands.intake_and_shooting;
 
-import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.Intake;
 
-public class RunShooterMotor extends CommandBase {
-  Shooter shooter;
-  XboxController controller;
-
-  public RunShooterMotor(Shooter subsystem, XboxController m_controller) {
-    shooter = subsystem;
-    controller = m_controller;
-    addRequirements(shooter);
+public class SetIntakeSpeed extends CommandBase {
+  private final Intake intake;
+  private final double speed;
+  public SetIntakeSpeed(Intake intake, double speed) {
+    this.intake = intake;
+    this.speed =speed;
+    addRequirements(intake);
   }
 
   @Override
@@ -28,12 +25,12 @@ public class RunShooterMotor extends CommandBase {
 
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(0.48);
+    intake.spinIntakeWheels(speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    shooter.setShootMotorSpeed(0);
+    intake.spinIntakeWheels(0);
   }
 
   @Override

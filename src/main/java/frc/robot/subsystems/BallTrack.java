@@ -16,7 +16,6 @@ import static frc.robot.Constants.*;
 public class BallTrack extends SubsystemBase {
   private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
   public BallTrack() {
-
   }
 
   @Override
