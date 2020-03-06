@@ -10,6 +10,8 @@ import frc.robot.commands.speedshift.*;
 import frc.robot.commands.intake_and_shooting.*;
 import frc.robot.commands.climbing.*;
 import frc.robot.commands.cooling.*;
+import frc.robot.commands.drive.DriveTrain;
+import frc.robot.commands.drive.TurnInPlace;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import frc.controls.*;
@@ -29,6 +31,7 @@ public class RobotContainer {
   private final LowGear lowGear = new LowGear(drive); 
   private final HighGear highGear = new HighGear(drive); 
   private final ConditionalCommand speedShift = new ConditionalCommand(lowGear, highGear, drive::isHighGear);
+  private final TurnInPlace turnInPlace = new TurnInPlace(drive);
 
   private final Shoot shoot = new Shoot(shooter, driver1); // Shooting, Intake, and Ball Track
   private final SetIntakeSpeed setIntakeSpeed = new SetIntakeSpeed(intake, 0.6);
@@ -51,6 +54,7 @@ public class RobotContainer {
   public static XboxController driver1 = new XboxController(XBOX_1_ID);
   public static XboxController driver2 = new XboxController(XBOX_2_ID);
   private final JoystickButton speedShiftButton = new JoystickButton(driver1, BUTTON_RB);
+  private final JoystickButton turnInPlaceButton = new JoystickButton(driver1, BUTTON_A);
   private final JoystickButton defenseShiftButton = new JoystickButton(driver1, BUTTON_LB);
   private final JoystickButton shootButton = new JoystickButton(driver1, BUTTON_X);
   private final JoystickButton climbUpButton = new JoystickButton(driver1, BUTTON_Y);
@@ -69,16 +73,17 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     speedShiftButton.whenPressed(speedShift);
-    defenseShift.whenPressed(defenseGear);
+    defenseShiftButton.whenPressed(defenseGear);
 
     shootButton.whileHeld(shoot);
     //intakeButton.whileHeld(i); //We have to sort out the intake button :/
-    ballTrackOut.whileHeld(runBallTrackOutwards);
-    ballTrackIn.whileHeld(runBallTrackInwards);
+    ballTrackOutButton.whileHeld(runBallTrackOutwards);
+    ballTrackInButton.whileHeld(runBallTrackInwards);
 
     //climbButton.whileHeld(climb);
+    turnInPlaceButton.whenPressed(turnInPlace);
 
-    coolFalcon.whenPressed(falconCooler);
+    coolFalconButton.whenPressed(falconCooler);
   }
 
   public Command getAutonomousCommand() {

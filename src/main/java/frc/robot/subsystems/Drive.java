@@ -15,37 +15,46 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
+
+  public enum GearState
+  {
+    HighGear, LowGear, DefenseGear;
+  }
   WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
   WPI_TalonFX leftSlave = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
   WPI_TalonFX rightMaster = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
   WPI_TalonFX rightSlave = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
 
   DifferentialDrive diffDrive = new DifferentialDrive(leftMaster, rightMaster);
+
+  private GearState currentGear = GearState.HighGear;
   public Drive() {
     leftSlave.follow(leftMaster);
     rightSlave.follow(rightMaster);
   }
   
   public void displayOnShuffleboard() {
-    SmartDashboard.putData("leftMaster", leftMaster);
-    SmartDashboard.putData("rightMaster", rightMaster);
-    SmartDashboard.putData("leftSlave", leftSlave);
-    SmartDashboard.putData("rightSlave", rightSlave);
-    SmartDashboard.putData("diffDrive1", diffDrive);
+    SmartDashboard.putString("Current Gear", currentGear.toString());
   }
 
   public static double speedMultiplier = 0.8; 
+  public static double turnSpeedMultiplier = 0.9 * speedMultiplier; 
   public void highGear() {
     speedMultiplier = 0.8;
-    System.out.println("high gear");
+    currentGear = GearState.HighGear;
+    turnSpeedMultiplier = speedMultiplier * .9;
   }
+
   public void lowGear() {
     speedMultiplier = .5;
-    System.out.println("low gear");
+    turnSpeedMultiplier = speedMultiplier * .9;
+    currentGear = GearState.LowGear;
   }
+
   public void defenseGear() {
     speedMultiplier = 1;
-    System.out.println("defense gear");
+    currentGear = GearState.DefenseGear;
+    turnSpeedMultiplier = speedMultiplier * .9;
   }
 
   public boolean isHighGear() {
@@ -56,8 +65,33 @@ public class Drive extends SubsystemBase {
     }
   }
 
+  public boolean isLowGear() {
+    if(speedMultiplier == 0.5) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean isDefenseGear() {
+    if(speedMultiplier == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public void turnInPlace()
+  {
+    turnSpeedMultiplier = 1;
+  }
+  
+  public GearState getCurrentGear(){
+    return currentGear;
+  }
+
   public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive.arcadeDrive(speedMultiplier * xSpeed, (0.9 * speedMultiplier) * zRotation);
+    diffDrive.arcadeDrive(speedMultiplier * xSpeed, turnSpeedMultiplier * zRotation);
   }
   
   @Override
