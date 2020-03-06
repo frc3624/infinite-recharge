@@ -16,11 +16,11 @@ import static frc.robot.Constants.*;
 
 public class Shooter extends SubsystemBase {
   private final static double SHOOTER_WHEEL_RADIUS = 2.0 / 12.0;
-  double kP = 1;
-  double kI = 0;
-  double kD = 0;
+  private double kP = 1;
+  private double kI = 0;
+  private double kD = 0;
   private final int MAXRPM = 5200;
-  private WPI_TalonFX shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
+  private final WPI_TalonFX shoot = new WPI_TalonFX(SHOOTER_MOTOR_ID);
 
   public Shooter() {
     /*
@@ -46,7 +46,7 @@ public class Shooter extends SubsystemBase {
   }
 
   */
-  public void setShootMotorSpeed(double a) {
-    shoot.set(ControlMode.PercentOutput, a);
+  public void setShootMotorSpeed(double percent) {
+    shoot.set(ControlMode.PercentOutput, percent);
   }
 }

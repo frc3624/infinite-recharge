@@ -9,6 +9,7 @@ import frc.robot.commands.*;
 import frc.robot.commands.speedshift.*;
 import frc.robot.commands.intake_and_shooting.*;
 import frc.robot.commands.climbing.*;
+import frc.robot.commands.cooling.*;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import frc.controls.*;
@@ -36,7 +37,12 @@ public class RobotContainer {
 
   private final Climb climb = new Climb(climber, 1.0); //Climbing
 
-  private final FalconCooler falconCooler = new FalconCooler(falconCool);
+  private final CoolDriveBase driveCooler = new CoolDriveBase(falconCool);
+  private final StopCoolDriveBase stopDriveCooler = new StopCoolDriveBase(falconCool);
+  private final ConditionalCommand toggleDriveCooling = new ConditionalCommand(stopDriveCooler, driveCooler, falconCool::isDriveCooling);
+  private final CoolShooter shooterCooler = new CoolShooter(falconCool);
+  private final StopCoolShooter stopShooterCooler = new StopCoolShooter(falconCool);
+  private final ConditionalCommand toggleShooterCooling = new ConditionalCommand(stopShooterCooler, shooterCooler, falconCool::isShooterCooling);
 
   //private final AutoCommand ac = new AutoCommand(drive); //Autonomous
 
