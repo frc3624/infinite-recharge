@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 
 public class Shoot extends CommandBase {
-  Shooter shooter;
-  XboxController controller;
+  private final Shooter shooter;
+  private final XboxController controller;
 
-  public Shoot(Shooter subsystem, XboxController m_controller) {
-    shooter = subsystem;
-    controller = m_controller;
+  public Shoot(Shooter shooter, XboxController controller) {
+    this.shooter = shooter;
+    this.controller = controller;
     addRequirements(shooter);
   }
 
