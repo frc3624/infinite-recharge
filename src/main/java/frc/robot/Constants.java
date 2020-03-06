@@ -55,6 +55,4 @@ public final class Constants {
     public static final int BUTTON_RB = 6;
     public static final int LEFT_TRIGGER = 2; //axis number
     public static final int RIGHT_TRIGGER = 3; //axis number
-    public static final int DPAD_UP = ;
-    public static final int DPAD_DOWN = ;
 }
