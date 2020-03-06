@@ -12,8 +12,27 @@ import frc.robot.commands.climbing.*;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import frc.controls.*;
+import static frc.controls.DPadButton.DPadDirection;
+import frc.controls.TriggerButton.Trigger;
 
 public class RobotContainer {
+    //The Buttons and Controllers
+  private static XboxController driver1 = new XboxController(XBOX_1_ID);
+  private static XboxController driver2 = new XboxController(XBOX_2_ID);
+  private final TriggerButton shiftLowGearTrigger = new TriggerButton(driver1, Trigger.RIGHT_TRIGGER, 1);
+
+  private final JoystickButton rotateInPlaceButton = new JoystickButton(driver1, BUTTON_A);
+  private final JoystickButton speedShiftButton = new JoystickButton(driver1, BUTTON_RB);
+  private final JoystickButton defenseShiftButton = new JoystickButton(driver1, BUTTON_LB);
+  private final JoystickButton shootButton = new JoystickButton(driver1, BUTTON_X);
+  private final JoystickButton climbUpButton = new JoystickButton(driver1, BUTTON_Y);
+  private final JoystickButton climbDownButton = new JoystickButton(driver1, BUTTON_X);
+  private final JoystickButton intakeButton = new JoystickButton(driver1, BUTTON_B);
+
+  private final DPadButton ballTrackInButton = new DPadButton(driver2, DPadDirection.DPAD_UP);
+  private final DPadButton ballTrackOutButton = new DPadButton(driver2, DPadDirection.DPAD_DOWN);
+  private final JoystickButton coolFalconButton = new JoystickButton(driver2, BUTTON_LB);
+    
   //Subsystems
   private final Drive drive = new Drive();
   private final Shooter shooter = new Shooter();
@@ -40,22 +59,6 @@ public class RobotContainer {
 
   //private final AutoCommand ac = new AutoCommand(drive); //Autonomous
 
-
-  //The Buttons and Controllers
-  public static XboxController driver1 = new XboxController(XBOX_1_ID);
-  public static XboxController driver2 = new XboxController(XBOX_2_ID);
-  private final JoystickButton speedShiftButton = new JoystickButton(driver1, BUTTON_RB);
-  private final JoystickButton defenseShiftButton = new JoystickButton(driver1, BUTTON_LB);
-  private final JoystickButton shootButton = new JoystickButton(driver1, BUTTON_X);
-  private final JoystickButton climbUpButton = new JoystickButton(driver1, BUTTON_Y);
-  private final JoystickButton climbDownButton = new JoystickButton(driver1, BUTTON_X);
-  private final JoystickButton intakeButton = new JoystickButton(driver1, BUTTON_B);//our robot has arms apparently
-  private final JoystickButton ballTrackInButton = new JoystickButton(driver2, DPAD_UP);//conveyor belt looking thing
-  private final JoystickButton ballTrackOutButton = new JoystickButton(driver2, DPAD_DOWN);
-  private final JoystickButton coolFalconButton = new JoystickButton(driver2, 5);
-  private final TriggerButton shiftLowGearTrigger = new TriggerButton(driver1, );
-  
-
   public RobotContainer() {
     configureButtonBindings();
     drive.setDefaultCommand(driveTrain);
@@ -63,16 +66,16 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     speedShiftButton.whenPressed(speedShift);
-    defenseShift.whenPressed(defenseGear);
+    defenseShiftButton.whenPressed(defenseGear);
 
     shootButton.whileHeld(shoot);
     //intakeButton.whileHeld(i); //We have to sort out the intake button :/
-    ballTrackOut.whileHeld(runBallTrackOutwards);
-    ballTrackIn.whileHeld(runBallTrackInwards);
+    ballTrackOutButton.whileHeld(runBallTrackOutwards);
+    ballTrackInButton.whileHeld(runBallTrackInwards);
 
     //climbButton.whileHeld(climb);
 
-    coolFalcon.whenPressed(falconCooler);
+    coolFalconButton.whenPressed(falconCooler);
   }
 
   public Command getAutonomousCommand() {
