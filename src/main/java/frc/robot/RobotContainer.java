@@ -9,6 +9,9 @@ import frc.robot.commands.*;
 import frc.robot.commands.speedshift.*;
 import frc.robot.commands.intake_and_shooting.*;
 import frc.robot.commands.climbing.*;
+import frc.robot.commands.cooling.*;
+import frc.robot.commands.drive.DriveTrain;
+import frc.robot.commands.drive.TurnInPlace;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import frc.controls.*;
@@ -47,6 +50,7 @@ public class RobotContainer {
   private final LowGear lowGear = new LowGear(drive); 
   private final HighGear highGear = new HighGear(drive); 
   private final ConditionalCommand speedShift = new ConditionalCommand(lowGear, highGear, drive::isHighGear);
+  private final TurnInPlace turnInPlace = new TurnInPlace(drive);
 
   private final Shoot shoot = new Shoot(shooter, driver1); // Shooting, Intake, and Ball Track
   private final SetIntakeSpeed setIntakeSpeed = new SetIntakeSpeed(intake, 0.6);
@@ -55,9 +59,31 @@ public class RobotContainer {
 
   private final Climb climb = new Climb(climber, 1.0); //Climbing
 
-  private final FalconCooler falconCooler = new FalconCooler(falconCool);
+  private final CoolDriveBase driveCooler = new CoolDriveBase(falconCool);
+  private final StopCoolDriveBase stopDriveCooler = new StopCoolDriveBase(falconCool);
+  private final ConditionalCommand toggleDriveCooling = new ConditionalCommand(stopDriveCooler, driveCooler, falconCool::isDriveCooling);
+  private final CoolShooter shooterCooler = new CoolShooter(falconCool);
+  private final StopCoolShooter stopShooterCooler = new StopCoolShooter(falconCool);
+  private final ConditionalCommand toggleShooterCooling = new ConditionalCommand(stopShooterCooler, shooterCooler, falconCool::isShooterCooling);
 
   //private final AutoCommand ac = new AutoCommand(drive); //Autonomous
+
+
+  //The Buttons and Controllers
+  public static XboxController driver1 = new XboxController(XBOX_1_ID);
+  public static XboxController driver2 = new XboxController(XBOX_2_ID);
+  private final JoystickButton speedShiftButton = new JoystickButton(driver1, BUTTON_RB);
+  private final JoystickButton turnInPlaceButton = new JoystickButton(driver1, BUTTON_A);
+  private final JoystickButton defenseShiftButton = new JoystickButton(driver1, BUTTON_LB);
+  private final JoystickButton shootButton = new JoystickButton(driver1, BUTTON_X);
+  private final JoystickButton climbUpButton = new JoystickButton(driver1, BUTTON_Y);
+  private final JoystickButton climbDownButton = new JoystickButton(driver1, BUTTON_X);
+  private final JoystickButton intakeButton = new JoystickButton(driver1, BUTTON_B);//our robot has arms apparently
+  private final JoystickButton ballTrackInButton = new JoystickButton(driver2, DPAD_UP);//conveyor belt looking thing
+  private final JoystickButton ballTrackOutButton = new JoystickButton(driver2, DPAD_DOWN);
+  private final JoystickButton coolFalconButton = new JoystickButton(driver2, 5);
+  private final TriggerButton shiftLowGearTrigger = new TriggerButton(driver1, );
+  
 
   public RobotContainer() {
     configureButtonBindings();
@@ -74,6 +100,7 @@ public class RobotContainer {
     ballTrackInButton.whileHeld(runBallTrackInwards);
 
     //climbButton.whileHeld(climb);
+    turnInPlaceButton.whenPressed(turnInPlace);
 
     coolFalconButton.whenPressed(falconCooler);
   }

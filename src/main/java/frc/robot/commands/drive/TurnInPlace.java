@@ -5,39 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake_and_shooting;
+package frc.robot.commands.drive;
 
-import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.Drive;
 
-public class Shoot extends CommandBase {
-  private final Shooter shooter;
-  private final XboxController controller;
-
-  public Shoot(Shooter shooter, XboxController controller) {
-    this.shooter = shooter;
-    this.controller = controller;
-    addRequirements(shooter);
+public class TurnInPlace extends CommandBase {
+  /**
+   * Creates a new TurnInPlace.
+   */
+  Drive drive;
+  public TurnInPlace(Drive drive) {
+    this.drive = drive;
+    addRequirements(drive);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(0.48);
+    drive.turnInPlace();
   }
 
+  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setShootMotorSpeed(0);
   }
 
+  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
