@@ -26,12 +26,12 @@ public class RunBallTrack extends CommandBase {
 
   @Override
   public void execute() {
-    ballTrack.setMotorSpeed(1);
+    ballTrack.setMotorSpeed(speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    ballTrack.setMotorSpeed(speed);
+    ballTrack.setMotorSpeed(0);
   }
 
   @Override

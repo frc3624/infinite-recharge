@@ -19,20 +19,32 @@ package frc.robot;
  */
 public final class Constants {
 
+    //Driving
     public static final int DRIVE_LEFT_MASTER_ID = 1; // Front Left
     public static final int DRIVE_RIGHT_MASTER_ID = 3; // Front right
     public static final int DRIVE_LEFT_SLAVE_ID = 2; // Back Left
     public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
 
+    //Shooting and picking up lemons
     public static final int SHOOTER_MOTOR_ID = 7;
-    public static final int BALL_TRACK_ID = 8;
-    public static final int INTAKE_MOTOR_ID = 9;
+    public static final int BALL_TRACK_ID = 11;
+    public static final int INTAKE_MOTOR_ID = 10;
 
+    //Climbing
     public static final int LEFT_CLIMB_MOTOR_ID = 5;
     public static final int RIGHT_CLIMB_MOTOR_ID = 6;
 
+    //Control panel
 
+    //
+
+
+    /**
+     * We have many more IDs to get for this robot. This is going to be a living nightmare rip
+     */
     
+
+    //Controller stuff
     public static final int XBOX_1_ID = 0;
     public static final int XBOX_2_ID = 1;
     public static final int SPEED_SHIFT_BUTTON_ID = 6;

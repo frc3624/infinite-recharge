@@ -7,25 +7,25 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Limelight extends SubsystemBase {
-  /**
-   * Creates a new Limelight.
-   */
-  public Limelight() {
-
+// The falcons are hotter than Kyle Bobert Diaz and need to be cooled
+public class FalconCool extends SubsystemBase {
+  Solenoid s = new Solenoid(0, 0);
+  public FalconCool() {
+    s.set(true);
   }
 
-  public static double findDistance() {
-    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
-  }
-  public static double findAngle() {
-    return -NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
-  }
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+  }
+
+  public void changePiston() { //just change the piston state
+    boolean v = s.get();
+    if(v)
+      s.set(false);
+    if(!v)
+      s.set(true);
   }
 }
