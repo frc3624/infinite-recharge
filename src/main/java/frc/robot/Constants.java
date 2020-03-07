@@ -36,7 +36,8 @@ public final class Constants {
 
     public static final int PCM_CAN_ID = 0;
     public static final int DRIVE_SOLENOID_PCM_ID = 0;
-    public static final int SHOOTER_SOLENOID_PCM_ID = 1;
+    public static final int LEFT_CLIMB_SOLENOID_PCM_ID = 5;
+    public static final int RIGHT_CLIMB_SOLENOID_PCM_ID = 6;
 
     //Control panel
 

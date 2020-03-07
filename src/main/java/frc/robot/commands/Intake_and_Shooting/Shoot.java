@@ -7,7 +7,6 @@
 
 package frc.robot.commands.intake_and_shooting;
 
-//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 

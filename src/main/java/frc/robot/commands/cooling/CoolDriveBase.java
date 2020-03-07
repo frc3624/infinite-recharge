@@ -18,7 +18,7 @@ public class CoolDriveBase extends CommandBase {
   }
 
   @Override
-  public void initialize() {
+  public void execute() {
     falconCool.coolDriveBase();
   }
 }

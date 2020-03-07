@@ -18,7 +18,7 @@ public class StopCoolDriveBase extends CommandBase {
   }
 
   @Override
-  public void initialize() {
+  public void execute() {
     falconCool.stopCoolingDriveBase();
   }
 }

@@ -13,8 +13,20 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drive extends SubsystemBase {
 
-  public enum GearState {
-    HighGear, LowGear, DefenseGear;
+  public enum GearState
+  {
+    HighGear(.8), LowGear(.5), DefenseGear(1);
+    private double multiplier;
+
+    private GearState(double multiplier)
+    {
+      this.multiplier = multiplier; 
+    }
+
+    private double getGearSpeedMultipier() {
+      return multiplier;
+    }
+
   }
   
   private final WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
@@ -25,6 +37,7 @@ public class Drive extends SubsystemBase {
   private final DifferentialDrive diffDrive = new DifferentialDrive(leftMaster, rightMaster);
 
   private GearState currentGear = GearState.HighGear;
+
   public Drive() {
     leftSlave.follow(leftMaster);
     rightSlave.follow(rightMaster);
@@ -35,23 +48,20 @@ public class Drive extends SubsystemBase {
   }
 
   public static double speedMultiplier = 0.8; 
-  public static double turnSpeedMultiplier = 0.9 * speedMultiplier; 
+  
   public void highGear() {
-    speedMultiplier = 0.8;
     currentGear = GearState.HighGear;
-    turnSpeedMultiplier = speedMultiplier * .9;
+    speedMultiplier = currentGear.getGearSpeedMultipier();
   }
 
   public void lowGear() {
-    speedMultiplier = .5;
-    turnSpeedMultiplier = speedMultiplier * .9;
     currentGear = GearState.LowGear;
+    speedMultiplier = currentGear.getGearSpeedMultipier();
   }
 
   public void defenseGear() {
-    speedMultiplier = 1;
     currentGear = GearState.DefenseGear;
-    turnSpeedMultiplier = speedMultiplier * .9;
+    speedMultiplier = currentGear.getGearSpeedMultipier();
   }
 
   public boolean isHighGear() {
@@ -80,7 +90,7 @@ public class Drive extends SubsystemBase {
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive.arcadeDrive(speedMultiplier * xSpeed, turnSpeedMultiplier * zRotation);
+    diffDrive.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * .9 * zRotation);
   }
   
   @Override

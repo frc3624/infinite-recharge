@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import static frc.robot.Constants.DRIVE_SOLENOID_PCM_ID;
 import static frc.robot.Constants.PCM_CAN_ID;
-import static frc.robot.Constants.SHOOTER_SOLENOID_PCM_ID;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,10 +16,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // The falcons are hotter than Kyle Bobert Diaz and need to be cooled
 public class FalconCool extends SubsystemBase {
   private final Solenoid driveSolenoid = new Solenoid(PCM_CAN_ID, DRIVE_SOLENOID_PCM_ID);
-  private final Solenoid shooterSolenoid = new Solenoid(PCM_CAN_ID, SHOOTER_SOLENOID_PCM_ID);
   public FalconCool() {
     stopCoolingDriveBase();
-    stopCoolingShooter();
   }
 
   @Override
@@ -30,22 +27,12 @@ public class FalconCool extends SubsystemBase {
   public void coolDriveBase() {
     driveSolenoid.set(true);
   }
-  public void coolShooter() {
-    shooterSolenoid.set(true);
-  }
 
   public void stopCoolingDriveBase() {
     driveSolenoid.set(false);
   }
-  public void stopCoolingShooter() {
-    shooterSolenoid.set(false);
-  }
 
   public boolean isDriveCooling() {
     return driveSolenoid.get();
-  }
-
-  public boolean isShooterCooling() {
-    return shooterSolenoid.get();
   }
 }

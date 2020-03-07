@@ -15,5 +15,4 @@ public class DefenseGear extends InstantCommand {
   public void execute() {
     drive.defenseGear();
   }
-
 }
