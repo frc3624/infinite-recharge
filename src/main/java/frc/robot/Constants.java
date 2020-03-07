@@ -26,8 +26,8 @@ public final class Constants {
     public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
 
     //Shooting and picking up balls
-    public static final int SHOOTER_MOTOR_ID = 7;
-    public static final int BALL_TRACK_ID = 11;
+    public static final int SHOOTER_MOTOR_ID = 27;
+    public static final int BALL_TRACK_ID = 20;
     public static final int INTAKE_MOTOR_ID = 10;
 
     //Climbing

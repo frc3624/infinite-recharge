@@ -13,13 +13,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 
 public class Shoot extends CommandBase {
-  private final Shooter shooter;
-  private final XboxController controller;
 
-  public Shoot(Shooter shooter, XboxController controller) {
+  private final Shooter shooter;
+  private final double speed;
+
+  public Shoot(Shooter shooter, double speed) {
     this.shooter = shooter;
-    this.controller = controller;
     addRequirements(shooter);
+    this.speed = speed;
   }
 
   @Override
@@ -28,7 +29,7 @@ public class Shoot extends CommandBase {
 
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(0.48);
+    shooter.setShootMotorSpeed(speed);
   }
 
   @Override

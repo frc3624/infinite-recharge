@@ -25,6 +25,6 @@ public class TriggerButton extends Button {
     }
     @Override
     public boolean get(){
-        return controller.getRawAxis(trigger.getAxisValue()) == threshhold;
+        return controller.getRawAxis(trigger.getAxisValue()) >= threshhold;
     } 
 }

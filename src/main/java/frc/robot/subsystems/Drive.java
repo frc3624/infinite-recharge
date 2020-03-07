@@ -83,7 +83,10 @@ public class Drive extends SubsystemBase {
 
   public void turnInPlace()
   {
-    turnSpeedMultiplier = 1;
+    if(turnSpeedMultiplier != 1)
+      turnSpeedMultiplier = 1;
+    else
+      turnSpeedMultiplier = speedMultiplier * .9;
   }
   
   public GearState getCurrentGear(){

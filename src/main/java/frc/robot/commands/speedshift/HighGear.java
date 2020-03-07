@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SpeedShift;
+package frc.robot.commands.speedshift;
 
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;

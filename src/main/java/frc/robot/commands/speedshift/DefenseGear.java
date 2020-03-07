@@ -5,22 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.SpeedShift;
+package frc.robot.commands.speedshift;
 
-
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drive;
 
-public class DefenseGear extends InstantCommand {
-  private final Drive drive;
-
+public class DefenseGear extends CommandBase {
+  /**
+   * Creates a new DefenseGear.
+   */
+  Drive drive;
   public DefenseGear(Drive drive) {
     this.drive = drive;
     addRequirements(drive);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
     drive.defenseGear();
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return true;
   }
 }
