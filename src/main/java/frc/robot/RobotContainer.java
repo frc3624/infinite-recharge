@@ -12,7 +12,6 @@ import frc.robot.commands.intake_and_shooting.*;
 import frc.robot.commands.climbing.*;
 import frc.robot.commands.cooling.*;
 import frc.robot.commands.drive.DriveTrain;
-import frc.robot.commands.drive.TurnInPlace;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import frc.controls.*;
@@ -53,7 +52,6 @@ public class RobotContainer {
   private final LowGear lowGear = new LowGear(drive); 
   private final HighGear highGear = new HighGear(drive); 
   private final ConditionalCommand speedShift = new ConditionalCommand(lowGear, highGear, drive::isHighGear);
-  private final TurnInPlace turnInPlace = new TurnInPlace(drive);
 
   // Shooting, Intake, and Ball Track
   private final Shoot shoot = new Shoot(shooter, .48);
@@ -88,7 +86,6 @@ public class RobotContainer {
     ballTrackInButton.whileHeld(runBallTrackInwards);
 
     //climbButton.whileHeld(climb);
-    turnInPlaceButton.whenPressed(turnInPlace);
 
     coolFalconButton.whenPressed(toggleDriveCooling.andThen(toggleShooterCooling));
   }
