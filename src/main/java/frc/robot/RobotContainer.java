@@ -1,22 +1,40 @@
 package frc.robot;
 
+import static frc.robot.Constants.BUTTON_A;
+import static frc.robot.Constants.BUTTON_B;
+import static frc.robot.Constants.BUTTON_LB;
+import static frc.robot.Constants.BUTTON_RB;
+import static frc.robot.Constants.BUTTON_X;
+import static frc.robot.Constants.BUTTON_Y;
+import static frc.robot.Constants.XBOX_1_ID;
+import static frc.robot.Constants.XBOX_2_ID;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import frc.robot.commands.Autonomous.*;
-import frc.robot.commands.speedshift.*;
-import frc.robot.commands.intake_and_shooting.*;
-import frc.robot.commands.climbing.*;
-import frc.robot.commands.cooling.*;
-import frc.robot.commands.drive.DriveTrain;
-import frc.robot.subsystems.*;
-import static frc.robot.Constants.*;
-import frc.controls.*;
-import static frc.controls.DPadButton.DPadDirection;
+import frc.controls.DPadButton;
+import frc.controls.DPadButton.DPadDirection;
+import frc.controls.TriggerButton;
 import frc.controls.TriggerButton.Trigger;
+import frc.robot.commands.climbing.Climb;
+import frc.robot.commands.cooling.CoolDriveBase;
+import frc.robot.commands.cooling.StopCoolDriveBase;
+import frc.robot.commands.drive.DriveTrain;
+import frc.robot.commands.intake_and_shooting.RunBallTrack;
+import frc.robot.commands.intake_and_shooting.SetIntakeSpeed;
+import frc.robot.commands.intake_and_shooting.Shoot;
+//import frc.robot.commands.Autonomous.*;
+import frc.robot.commands.speedshift.DefenseGear;
+import frc.robot.commands.speedshift.HighGear;
+import frc.robot.commands.speedshift.LowGear;
+import frc.robot.subsystems.BallTrack;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.FalconCool;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
   // The Buttons and Controllers
@@ -64,9 +82,6 @@ public class RobotContainer {
   private final CoolDriveBase driveCooler = new CoolDriveBase(falconCool);
   private final StopCoolDriveBase stopDriveCooler = new StopCoolDriveBase(falconCool);
   private final ConditionalCommand toggleDriveCooling = new ConditionalCommand(stopDriveCooler, driveCooler, falconCool::isDriveCooling);
-  private final CoolShooter shooterCooler = new CoolShooter(falconCool);
-  private final StopCoolShooter stopShooterCooler = new StopCoolShooter(falconCool);
-  private final ConditionalCommand toggleShooterCooling = new ConditionalCommand(stopShooterCooler, shooterCooler, falconCool::isShooterCooling);
 
   //private final AutoCommand ac = new AutoCommand(drive); //Autonomous  
 
@@ -87,7 +102,7 @@ public class RobotContainer {
 
     //climbButton.whileHeld(climb);
 
-    coolFalconButton.whenPressed(toggleDriveCooling.andThen(toggleShooterCooling));
+    coolFalconButton.whenPressed(toggleDriveCooling);
   }
 
   public Command getAutonomousCommand() {

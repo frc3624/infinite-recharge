@@ -7,12 +7,12 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.SHOOTER_MOTOR_ID;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import static frc.robot.Constants.*;
 
 public class Shooter extends SubsystemBase {
   private final static double SHOOTER_WHEEL_RADIUS = 2.0 / 12.0;

@@ -20,7 +20,7 @@ public class StopCoolDriveBase extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void execute() {
     falconCool.stopCoolingDriveBase();
   }
 }
