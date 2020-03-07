@@ -16,8 +16,7 @@ import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
 
-  public enum GearState
-  {
+  public enum GearState {
     HighGear, LowGear, DefenseGear;
   }
   WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
@@ -58,38 +57,34 @@ public class Drive extends SubsystemBase {
   }
 
   public boolean isHighGear() {
-    if(speedMultiplier == 0.8) {
+    if(speedMultiplier == 0.8)
       return true;
-    } else {
+    else
       return false;
-    }
   }
 
   public boolean isLowGear() {
-    if(speedMultiplier == 0.5) {
+    if(speedMultiplier == 0.5)
       return true;
-    } else {
+    else
       return false;
-    }
   }
 
   public boolean isDefenseGear() {
-    if(speedMultiplier == 1) {
+    if(speedMultiplier == 1) 
       return true;
-    } else {
+    else
       return false;
-    }
   }
 
-  public void turnInPlace()
-  {
+  public void turnInPlace() {
     if(turnSpeedMultiplier != 1)
       turnSpeedMultiplier = 1;
     else
       turnSpeedMultiplier = speedMultiplier * .9;
   }
   
-  public GearState getCurrentGear(){
+  public GearState getCurrentGear() {
     return currentGear;
   }
 

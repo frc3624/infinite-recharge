@@ -18,7 +18,6 @@ public class TurnInPlace extends CommandBase {
   public TurnInPlace(Drive drive) {
     this.drive = drive;
     addRequirements(drive);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.

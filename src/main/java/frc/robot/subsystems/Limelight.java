@@ -21,11 +21,12 @@ public class Limelight extends SubsystemBase {
   public static double findDistance() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
   }
+
   public static double findAngle() {
     return -NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
   }
+
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 }

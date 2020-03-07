@@ -15,10 +15,8 @@ public class StopCoolDriveBase extends CommandBase {
   public StopCoolDriveBase(FalconCool falconCool) {
     this.falconCool = falconCool;
     addRequirements(falconCool);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     falconCool.stopCoolingDriveBase();
