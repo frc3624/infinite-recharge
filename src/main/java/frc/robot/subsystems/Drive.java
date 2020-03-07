@@ -1,30 +1,28 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
+
+import static frc.robot.Constants.DRIVE_LEFT_MASTER_ID;
+import static frc.robot.Constants.DRIVE_LEFT_SLAVE_ID;
+import static frc.robot.Constants.DRIVE_RIGHT_MASTER_ID;
+import static frc.robot.Constants.DRIVE_RIGHT_SLAVE_ID;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import static frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
 
   public enum GearState {
     HighGear, LowGear, DefenseGear;
   }
-  WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
-  WPI_TalonFX leftSlave = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
-  WPI_TalonFX rightMaster = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
-  WPI_TalonFX rightSlave = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
+  
+  private final WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
+  private final WPI_TalonFX leftSlave = new WPI_TalonFX(DRIVE_LEFT_SLAVE_ID);
+  private final WPI_TalonFX rightMaster = new WPI_TalonFX(DRIVE_RIGHT_MASTER_ID);
+  private final WPI_TalonFX rightSlave = new WPI_TalonFX(DRIVE_RIGHT_SLAVE_ID);
 
-  DifferentialDrive diffDrive = new DifferentialDrive(leftMaster, rightMaster);
+  private final DifferentialDrive diffDrive = new DifferentialDrive(leftMaster, rightMaster);
 
   private GearState currentGear = GearState.HighGear;
   public Drive() {
@@ -76,13 +74,6 @@ public class Drive extends SubsystemBase {
     else
       return false;
   }
-
-  public void turnInPlace() {
-    if(turnSpeedMultiplier != 1)
-      turnSpeedMultiplier = 1;
-    else
-      turnSpeedMultiplier = speedMultiplier * .9;
-  }
   
   public GearState getCurrentGear() {
     return currentGear;
@@ -94,6 +85,5 @@ public class Drive extends SubsystemBase {
   
   @Override
   public void periodic() {
-    System.out.println(speedMultiplier);
-  }
+    }
 }
