@@ -5,26 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.commands.cooling;
 
-import static frc.robot.Constants.INTAKE_MOTOR_ID;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.FalconCool;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-public class Intake extends SubsystemBase {
-  WPI_TalonSRX intakeMotor = new WPI_TalonSRX(INTAKE_MOTOR_ID);
-
-  public Intake() {
+public class CoolDriveBase extends CommandBase {
+  private final FalconCool falconCool;
+  public CoolDriveBase(FalconCool falconCool) {
+    this.falconCool = falconCool;
+    addRequirements(falconCool);
   }
 
   @Override
-  public void periodic() {
-  }
-
-  public void spinIntakeWheels(double speed) {
-    intakeMotor.set(ControlMode.PercentOutput, speed);
+  public void execute() {
+    falconCool.coolDriveBase();
   }
 }

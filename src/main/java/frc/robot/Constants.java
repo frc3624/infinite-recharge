@@ -26,13 +26,18 @@ public final class Constants {
     public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
 
     //Shooting and picking up balls
-    public static final int SHOOTER_MOTOR_ID = 7;
-    public static final int BALL_TRACK_ID = 11;
+    public static final int SHOOTER_MOTOR_ID = 27;
+    public static final int BALL_TRACK_ID = 20;
     public static final int INTAKE_MOTOR_ID = 10;
 
     //Climbing
     public static final int LEFT_CLIMB_MOTOR_ID = 5;
     public static final int RIGHT_CLIMB_MOTOR_ID = 6;
+
+    public static final int PCM_CAN_ID = 0;
+    public static final int DRIVE_SOLENOID_PCM_ID = 0;
+    public static final int LEFT_CLIMB_SOLENOID_PCM_ID = 5;
+    public static final int RIGHT_CLIMB_SOLENOID_PCM_ID = 6;
 
     //Control panel
 
@@ -55,6 +60,4 @@ public final class Constants {
     public static final int BUTTON_RB = 6;
     public static final int LEFT_TRIGGER = 2; //axis number
     public static final int RIGHT_TRIGGER = 3; //axis number
-    public static final int DPAD_UP = ;
-    public static final int DPAD_DOWN = ;
 }

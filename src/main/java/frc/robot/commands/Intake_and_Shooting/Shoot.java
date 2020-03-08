@@ -7,19 +7,18 @@
 
 package frc.robot.commands.intake_and_shooting;
 
-import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.Shooter;
 
 public class Shoot extends CommandBase {
-  Shooter shooter;
-  XboxController controller;
 
-  public Shoot(Shooter subsystem, XboxController m_controller) {
-    shooter = subsystem;
-    controller = m_controller;
+  private final Shooter shooter;
+  private final double speed;
+
+  public Shoot(Shooter shooter, double speed) {
+    this.shooter = shooter;
     addRequirements(shooter);
+    this.speed = speed;
   }
 
   @Override
@@ -28,7 +27,7 @@ public class Shoot extends CommandBase {
 
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(0.48);
+    shooter.setShootMotorSpeed(speed);
   }
 
   @Override

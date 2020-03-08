@@ -7,11 +7,12 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.BALL_TRACK_ID;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import static frc.robot.Constants.*;
 
 public class BallTrack extends SubsystemBase {
   private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
@@ -20,7 +21,6 @@ public class BallTrack extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
   public void setMotorSpeed(double a) {
     ballTrack.set(ControlMode.PercentOutput, a);

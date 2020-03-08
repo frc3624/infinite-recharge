@@ -1,10 +1,7 @@
 # Infinite Recharge
 
-## Infinite Recharge Master Branch
-
-### Oi Aryan Sharma, Director of Drive Team
-
-We need to figure out button bindings which work for you guys while driving. Whenever you can, please make a sheet with all of your bindings which you want listed out.
+## Latest Changes
+We are cleaning. Our code is as clean as someone who hasn't had a drink in 50 years and is 49 years old. We have standardized our coding style
 
 Here's what he have so far:
 
@@ -29,16 +26,22 @@ What we still need to do (probably longer than this list lol):
 
 **On the first Xbox Controller**
 
-- Left Stick: (Move front and back) Right Stick: (Left and Right)
-- Ball Shooter: A Button
-- Ball Track Inwards: X Button
-- Ball Track Outwards: Y Button
-- Climb Button: B Button
-- High/Low Speed Shift: Right Bumper
-- Defense Shift: Left Bumper
+- Left Joystick:    Forward + Backwards
+- Right Joystick:   Left + Right
+- Left Bumper:      Defense Gear
+- Right Bumper:     High Gear
+- Right Trigger:    Low Gear
+- Y Button:         Climb Up
+- X Button:         Climb Down
 
 **On the second Xbox Controller**
 
-- Cool the Falcons: Left Bumper
+- Right Joystick:   Move Control Panel Left and Right    
+- DPad Up:          Intake Up
+- DPad Down:        Intake Down
+- B Button:         Run Intake Belt
+- X Button:         Shoot Ball
+
+Cooling Falcons will eventually become an automatic command, so we do not have a button allocated
 
 To be determined...

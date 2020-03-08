@@ -5,25 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.cooling;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.FalconCool;
 
-public class FalconCooler extends InstantCommand {
-  /**
-   * Creates a new FalconCooler.
-   */
+public class StopCoolDriveBase extends CommandBase {
   private final FalconCool falconCool;
-  public FalconCooler(FalconCool falconCool) {
+  public StopCoolDriveBase(FalconCool falconCool) {
     this.falconCool = falconCool;
     addRequirements(falconCool);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    falconCool.changePiston();
+  public void execute() {
+    falconCool.stopCoolingDriveBase();
   }
 }
