@@ -61,7 +61,6 @@ public class RobotContainer {
   private final Intake intake = new Intake();
   private final BallTrack ballTrack = new BallTrack();
   private final FalconCool falconCool = new FalconCool();
-  private final Compressor compressor = new Compressor(0);
 
   // Commands
 
@@ -88,7 +87,6 @@ public class RobotContainer {
   public RobotContainer() {
     configureButtonBindings();
     drive.setDefaultCommand(driveTrain);
-    compressor.stop();
   }
 
   private void configureButtonBindings() {
