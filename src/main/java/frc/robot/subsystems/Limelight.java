@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -12,62 +5,65 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
-  /**
-   * Creates a new Limelight.
-   */
-  private Servo servo = new Servo(9);
+
+  private final Servo servo = new Servo(9);
+
   private static final double UP_ANGLE = 225;
   private static final double DOWN_ANGLE = 45;
-  private static final double FOWARD_ANGLE = 180;
+  private static final double FORWARD_ANGLE = 180;
+  
   public Limelight() {
 
   }
 
-  public void lookFoward(){
-    servo.setAngle(FOWARD_ANGLE);
+  public void lookForward() {
+    servo.setAngle(FORWARD_ANGLE);
   }
-
-  public void lookUp(){
+  public void lookUp() {
     servo.setAngle(UP_ANGLE);
   }
-
-  public void lookDown(){
+  public void lookDown() {
     servo.setAngle(DOWN_ANGLE);
   }
-  /**
-   * @return whether or not the limelight has any valid targets
+
+  /*
+   * The following methods could definitely be static since they are just referencing some other
+   * static methods.
+   * Even without the servo, I would have made them static just so Limelight could be similar to the
+   * other subsystems.
+   * With the servo, these values will change depending on where the limelight is currently facing,
+   * so these should only bee called once whatever command that is using this has reserved this
+   * subsystem and made it face wherever it needs to.
    */
-  public static double findValidTargets(){
+
+  /**
+   * @return Whether or not the Limelight has any valid targets
+   */
+  public double hasValidTarget() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-
   }
-
   /**
-   * @return The horizontal displacement from the limelight to the target
+   * @return The horizontal displacement from where the Limelight is aimed to the target
    */
-  public static double findHorizontalDistance() {
+  public double getHorizontalDistance() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
   }
-
   /**
-   * @return the vertical displacement from the limelight to the target
+   * @return The vertical displacement from where the Limelight is aimed to the target
    */
-  public static double findVerticalDistance(){
+  public double getVerticalDistance() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
-
   }
-
   /**
-   * @return the rotation from the limelight to the target
+   * @return The rotation of the target relative to the face of the Limelight
    */
-  public static double findAngle() {
+  public double getTargetAngle() {
     return -NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
   }
-  
   /**
-   * @return the target area (0% to 100% of the image)
+   * @return The area of the Limelight's FOV the target takes up (0.0 to 100.0 of the image)
    */
-  public static double findTargetArea() {
+  public double getTargetArea() {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
   }
 
@@ -75,4 +71,5 @@ public class Limelight extends SubsystemBase {
   @Override
   public void periodic() {
   }
+
 }
