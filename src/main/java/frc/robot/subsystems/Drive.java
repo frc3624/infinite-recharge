@@ -13,20 +13,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drive extends SubsystemBase {
 
-  public enum GearState
-  {
+  public enum GearState {
     HighGear(.8), LowGear(.5), DefenseGear(1);
     private double multiplier;
 
-    private GearState(double multiplier)
-    {
+    private GearState(double multiplier){
       this.multiplier = multiplier; 
     }
 
     private double getGearSpeedMultipier() {
       return multiplier;
     }
-
   }
   
   private final WPI_TalonFX leftMaster = new WPI_TalonFX(DRIVE_LEFT_MASTER_ID);
