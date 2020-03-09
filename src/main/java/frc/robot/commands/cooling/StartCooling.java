@@ -10,9 +10,10 @@ package frc.robot.commands.cooling;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.FalconCool;
 
-public class CoolDriveBase extends CommandBase {
+public class StartCooling extends CommandBase {
   private final FalconCool falconCool;
-  public CoolDriveBase(FalconCool falconCool) {
+
+  public StartCooling(FalconCool falconCool) {
     this.falconCool = falconCool;
     addRequirements(falconCool);
   }

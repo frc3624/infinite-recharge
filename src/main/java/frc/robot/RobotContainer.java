@@ -9,7 +9,6 @@ import static frc.robot.Constants.BUTTON_Y;
 import static frc.robot.Constants.XBOX_1_ID;
 import static frc.robot.Constants.XBOX_2_ID;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
@@ -19,21 +18,21 @@ import frc.controls.DPadButton.DPadDirection;
 import frc.controls.TriggerButton;
 import frc.controls.TriggerButton.Trigger;
 import frc.robot.commands.climbing.Climb;
-import frc.robot.commands.cooling.CoolDriveBase;
-import frc.robot.commands.cooling.StopCoolDriveBase;
+import frc.robot.commands.collect_or_shoot_balls.RunBallTrack;
+import frc.robot.commands.collect_or_shoot_balls.SetIntakeSpeed;
+import frc.robot.commands.collect_or_shoot_balls.Shoot;
+import frc.robot.commands.cooling.StartCooling;
+import frc.robot.commands.cooling.StopCooling;
 import frc.robot.commands.drive.JoystickDrive;
-import frc.robot.commands.intake_and_shooting.RunBallTrack;
-import frc.robot.commands.intake_and_shooting.SetIntakeSpeed;
-import frc.robot.commands.intake_and_shooting.Shoot;
 //import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.speedshift.DefenseGear;
 import frc.robot.commands.speedshift.HighGear;
 import frc.robot.commands.speedshift.LowGear;
-import frc.robot.subsystems.BallTrack;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.FalconCool;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Intake; 
 import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
@@ -59,7 +58,7 @@ public class RobotContainer {
   private final Shooter shooter = new Shooter();
   private final Climber climber = new Climber();
   private final Intake intake = new Intake();
-  private final BallTrack ballTrack = new BallTrack();
+  private final Conveyor conveyor = new Conveyor();
   private final FalconCool falconCool = new FalconCool();
 
   // Commands
@@ -73,16 +72,14 @@ public class RobotContainer {
   // Shooting, Intake, and Ball Track
   private final Shoot shoot = new Shoot(shooter, .48);
   private final SetIntakeSpeed setIntakeSpeed = new SetIntakeSpeed(intake, 0.6);
-  private final RunBallTrack runBallTrackInwards = new RunBallTrack(ballTrack, 1);
-  private final RunBallTrack runBallTrackOutwards = new RunBallTrack(ballTrack, -1);
+  private final RunBallTrack runBallTrackInwards = new RunBallTrack(conveyor, 1);
+  private final RunBallTrack runBallTrackOutwards = new RunBallTrack(conveyor, -1);
 
   private final Climb climb = new Climb(climber, 1.0); //Climbing
 
-  private final CoolDriveBase driveCooler = new CoolDriveBase(falconCool);
-  private final StopCoolDriveBase stopDriveCooler = new StopCoolDriveBase(falconCool);
-  private final ConditionalCommand toggleDriveCooling = new ConditionalCommand(stopDriveCooler, driveCooler, falconCool::isDriveCooling);
-
-  //private final AutoCommand ac = new AutoCommand(drive); //Autonomous  
+  private final StartCooling startCooler = new StartCooling(falconCool);
+  private final StopCooling stopCooler = new StopCooling(falconCool);
+  private final ConditionalCommand toggleDriveCooling = new ConditionalCommand(stopCooler, startCooler, falconCool::isDriveCooling);
 
   public RobotContainer() {
     configureButtonBindings();

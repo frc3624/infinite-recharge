@@ -13,8 +13,9 @@ import frc.robot.subsystems.Climber;
 public class Climb extends CommandBase {
   private final Climber climber;
   private final double speed;
+  
   public Climb(Climber climber, double speed) {
-    this.climber =climber;
+    this.climber = climber;
     this.speed = speed;
     addRequirements(climber);
   }

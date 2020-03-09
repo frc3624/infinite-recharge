@@ -7,32 +7,21 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.FALCON_COOL_PCM_ID;
-import static frc.robot.Constants.PCM_CAN_ID;
+import static frc.robot.Constants.BALL_TRACK_ID;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-// The falcons are hotter than Kyle Bobert Diaz and need to be cooled
-public class FalconCool extends SubsystemBase {
-  private final Solenoid driveSolenoid = new Solenoid(PCM_CAN_ID, FALCON_COOL_PCM_ID);
-  public FalconCool() {
-    stopCoolingDriveBase();
+public class Conveyor extends SubsystemBase {
+  private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
+  public Conveyor() {
   }
 
   @Override
   public void periodic() {
   }
-
-  public void coolDriveBase() {
-    driveSolenoid.set(true);
-  }
-
-  public void stopCoolingDriveBase() {
-    driveSolenoid.set(false);
-  }
-
-  public boolean isDriveCooling() {
-    return driveSolenoid.get();
+  public void setMotorSpeed(double a) {
+    ballTrack.set(ControlMode.PercentOutput, a);
   }
 }

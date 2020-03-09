@@ -5,20 +5,38 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.cooling;
+package frc.robot.commands.collect_or_shoot_balls;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FalconCool;
+import frc.robot.subsystems.Shooter;
 
-public class StopCoolDriveBase extends CommandBase {
-  private final FalconCool falconCool;
-  public StopCoolDriveBase(FalconCool falconCool) {
-    this.falconCool = falconCool;
-    addRequirements(falconCool);
+public class Shoot extends CommandBase {
+
+  private final Shooter shooter;
+  private final double speed;
+
+  public Shoot(Shooter shooter, double speed) {
+    this.shooter = shooter;
+    addRequirements(shooter);
+    this.speed = speed;
+  }
+
+  @Override
+  public void initialize() {
   }
 
   @Override
   public void execute() {
-    falconCool.stopCoolingDriveBase();
+    shooter.setShootMotorSpeed(speed);
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    shooter.setShootMotorSpeed(0);
+  }
+
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 }

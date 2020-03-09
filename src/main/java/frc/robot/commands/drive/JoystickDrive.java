@@ -10,10 +10,7 @@ public class JoystickDrive extends CommandBase {
   private final Drive drive;
   private final XboxController driveController;
 
-  /**
-   * @param drive The subsystem used by this command.
-   */
-  public JoystickDrive(final Drive drive, final XboxController driveController) {
+  public JoystickDrive(Drive drive, XboxController driveController) {
     this.drive = drive;
     this.driveController = driveController;
     addRequirements(drive);

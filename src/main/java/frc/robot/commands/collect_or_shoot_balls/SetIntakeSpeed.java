@@ -5,20 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake_and_shooting;
+package frc.robot.commands.collect_or_shoot_balls;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Intake;
 
-public class Shoot extends CommandBase {
-
-  private final Shooter shooter;
+public class SetIntakeSpeed extends CommandBase {
+  private final Intake intake;
   private final double speed;
-
-  public Shoot(Shooter shooter, double speed) {
-    this.shooter = shooter;
-    addRequirements(shooter);
+  public SetIntakeSpeed(Intake intake, double speed) {
+    this.intake = intake;
     this.speed = speed;
+    addRequirements(intake);
   }
 
   @Override
@@ -27,12 +25,12 @@ public class Shoot extends CommandBase {
 
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(speed);
+    intake.spinIntakeWheels(speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    shooter.setShootMotorSpeed(0);
+    intake.spinIntakeWheels(0);
   }
 
   @Override

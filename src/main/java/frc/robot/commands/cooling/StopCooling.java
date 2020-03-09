@@ -5,24 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.commands.cooling;
 
-import static frc.robot.Constants.BALL_TRACK_ID;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.FalconCool;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-public class BallTrack extends SubsystemBase {
-  private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
-  public BallTrack() {
+public class StopCooling extends CommandBase {
+  private final FalconCool falconCool;
+  public StopCooling(FalconCool falconCool) {
+    this.falconCool = falconCool;
+    addRequirements(falconCool);
   }
 
   @Override
-  public void periodic() {
-  }
-  public void setMotorSpeed(double a) {
-    ballTrack.set(ControlMode.PercentOutput, a);
+  public void execute() {
+    falconCool.stopCoolingDriveBase();
   }
 }
