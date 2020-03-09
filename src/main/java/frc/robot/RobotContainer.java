@@ -21,7 +21,7 @@ import frc.controls.TriggerButton.Trigger;
 import frc.robot.commands.climbing.Climb;
 import frc.robot.commands.cooling.CoolDriveBase;
 import frc.robot.commands.cooling.StopCoolDriveBase;
-import frc.robot.commands.drive.DriveTrain;
+import frc.robot.commands.drive.JoystickDrive;
 import frc.robot.commands.intake_and_shooting.RunBallTrack;
 import frc.robot.commands.intake_and_shooting.SetIntakeSpeed;
 import frc.robot.commands.intake_and_shooting.Shoot;
@@ -64,7 +64,7 @@ public class RobotContainer {
 
   // Commands
 
-  private final DriveTrain driveTrain = new DriveTrain(drive, driver1); 
+  private final JoystickDrive driveTrain = new JoystickDrive(drive, driver1); 
   private final DefenseGear defenseGear = new DefenseGear(drive); 
   private final LowGear lowGear = new LowGear(drive); 
   private final HighGear highGear = new HighGear(drive); 
