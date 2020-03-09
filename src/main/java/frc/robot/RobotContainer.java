@@ -18,9 +18,9 @@ import frc.controls.DPadButton.DPadDirection;
 import frc.controls.TriggerButton;
 import frc.controls.TriggerButton.Trigger;
 import frc.robot.commands.climbing.Climb;
-import frc.robot.commands.collect_or_shoot_balls.RunBallTrack;
-import frc.robot.commands.collect_or_shoot_balls.SetIntakeSpeed;
-import frc.robot.commands.collect_or_shoot_balls.Shoot;
+import frc.robot.commands.intake_process.intake.RunBallTrack;
+import frc.robot.commands.intake_process.intake.SetIntakeSpeed;
+import frc.robot.commands.intake_process.shoot_balls.Shoot;
 import frc.robot.commands.cooling.StartCooling;
 import frc.robot.commands.cooling.StopCooling;
 import frc.robot.commands.drive.JoystickDrive;
@@ -62,7 +62,6 @@ public class RobotContainer {
   private final FalconCool falconCool = new FalconCool();
 
   // Commands
-
   private final JoystickDrive driveTrain = new JoystickDrive(drive, driver1); 
   private final DefenseGear defenseGear = new DefenseGear(drive); 
   private final LowGear lowGear = new LowGear(drive); 
@@ -91,7 +90,7 @@ public class RobotContainer {
     defenseShiftButton.whenPressed(defenseGear);
 
     shootButton.whileHeld(shoot);
-    //intakeButton.whileHeld(i); //We have to sort out the intake button :/
+    //intakeButton.whileHeld(setIntakeSpeed); //We have to sort out the intake button :/
     ballTrackOutButton.whileHeld(runBallTrackOutwards);
     ballTrackInButton.whileHeld(runBallTrackInwards);
 
