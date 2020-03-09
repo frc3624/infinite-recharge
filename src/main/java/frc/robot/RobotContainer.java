@@ -22,9 +22,7 @@ import frc.robot.commands.climbing.Climb;
 import frc.robot.commands.cooling.CoolDriveBase;
 import frc.robot.commands.cooling.StopCoolDriveBase;
 import frc.robot.commands.drive.DriveTrain;
-import frc.robot.commands.intake_and_shooting.RunBallTrack;
-import frc.robot.commands.intake_and_shooting.SetIntakeSpeed;
-import frc.robot.commands.intake_and_shooting.Shoot;
+import frc.robot.commands.Intake_and_Shooting.*;
 //import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.speedshift.DefenseGear;
 import frc.robot.commands.speedshift.HighGear;
@@ -50,8 +48,8 @@ public class RobotContainer {
   private final JoystickButton intakeButton = new JoystickButton(driver1, BUTTON_B);
 
   private final JoystickButton shootButton = new JoystickButton(driver2, BUTTON_X);
-  private final DPadButton ballTrackInButton = new DPadButton(driver2, DPadDirection.DPAD_UP);
-  private final DPadButton ballTrackOutButton = new DPadButton(driver2, DPadDirection.DPAD_DOWN);
+  private final DPadButton ballTrackInButton = new DPadButton(driver2, DPadDirection.UP);
+  private final DPadButton ballTrackOutButton = new DPadButton(driver2, DPadDirection.DOWN);
   private final JoystickButton coolFalconButton = new JoystickButton(driver2, BUTTON_LB);
     
   // Subsystems
