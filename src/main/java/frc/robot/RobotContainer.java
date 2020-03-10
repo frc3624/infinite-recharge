@@ -24,7 +24,6 @@ import frc.robot.commands.intake_process.shoot_balls.Shoot;
 import frc.robot.commands.cooling.StartCooling;
 import frc.robot.commands.cooling.StopCooling;
 import frc.robot.commands.drive.JoystickDrive;
-//import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.speedshift.DefenseGear;
 import frc.robot.commands.speedshift.HighGear;
 import frc.robot.commands.speedshift.LowGear;
