@@ -50,8 +50,8 @@ public class RobotContainer {
   private final JoystickButton intakeButton = new JoystickButton(driver1, BUTTON_B);
 
   private final JoystickButton shootButton = new JoystickButton(driver2, BUTTON_X);
-  private final DPadButton ballTrackInButton = new DPadButton(driver2, DPadDirection.DPAD_UP);
-  private final DPadButton ballTrackOutButton = new DPadButton(driver2, DPadDirection.DPAD_DOWN);
+  private final DPadButton ballTrackInButton = new DPadButton(driver2, DPadDirection.UP);
+  private final DPadButton ballTrackOutButton = new DPadButton(driver2, DPadDirection.DOWN);
   private final JoystickButton coolFalconButton = new JoystickButton(driver2, BUTTON_LB);
     
   // Subsystems
