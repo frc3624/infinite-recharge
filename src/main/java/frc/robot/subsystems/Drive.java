@@ -15,6 +15,9 @@ public class Drive extends SubsystemBase {
 
   public enum GearState
   {
+    /*Creates enums for GearState with each of them having their own multiplier 
+    that affects the speed of the robot. For example, when the robot is in HighGear, it changes the 
+    speedMulitplier (of the robot) to that value (which is 0.8)*/
     HighGear(.8), LowGear(.5), DefenseGear(1);
     private double multiplier;
 
