@@ -22,7 +22,6 @@ import frc.robot.commands.climbing.Climb;
 import frc.robot.commands.cooling.CoolDriveBase;
 import frc.robot.commands.cooling.StopCoolDriveBase;
 import frc.robot.commands.drive.DriveTrain;
-import frc.robot.commands.Intake_and_Shooting.*;
 //import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.speedshift.DefenseGear;
 import frc.robot.commands.speedshift.HighGear;
