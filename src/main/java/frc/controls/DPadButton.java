@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 
 public class DPadButton extends Button {
     public enum DPadDirection {
-        UP(0),
-        UPRIGHT(45),
-        RIGHT(90),
-        DOWNRIGHT(135),
-        DOWN(180),
-        DOWNLEFT(225),
-        LEFT(270),
-        UPLEFT(315);
+        DPAD_UP(0),
+        DPAD_UPRIGHT(45),
+        DPAD_RIGHT(90),
+        DPAD_DOWNRIGHT(135),
+        DPAD_DOWN(180),
+        DPAD_DOWNLEFT(225),
+        DPAD_LEFT(270),
+        DPAD_UPLEFT(315);
         private int angle;
         DPadDirection(int angle) {
             this.angle = angle;
