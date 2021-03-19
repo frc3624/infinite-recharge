@@ -18,12 +18,17 @@ package frc.robot;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //Controller
+    public static final int XBOX_A_BUTTON = 0;
 
     //Driving
     public static final int DRIVE_LEFT_MASTER_ID = 1; // Front Left
     public static final int DRIVE_RIGHT_MASTER_ID = 3; // Front right
     public static final int DRIVE_LEFT_SLAVE_ID = 2; // Back Left
     public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
+
+    //Shooting
+    public static final int SHOOT_MOTOR_ID = 27;
 
     /**
      * We have many more IDs to get for this robot. This is going to be a living nightmare rip

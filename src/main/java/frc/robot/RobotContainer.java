@@ -2,12 +2,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveTrain;
 import frc.robot.subsystems.Drive;
 
 public class RobotContainer {
   // The Buttons and Controllers
   private XboxController driver1;
+  private JoystickButton driver1ButtonA;
     
   // Subsystems
   private Drive drive;
@@ -24,7 +26,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     driver1 = new XboxController(0);
-
+    driver1ButtonA = new JoystickButton(driver1, 0);
   }
 
   private void configureSubsystems() {
