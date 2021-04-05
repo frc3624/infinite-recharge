@@ -5,14 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.BallFeeder;
 
-public class Shoot extends CommandBase {
-  /** Creates a new Shoot. */
-  private Shooter shooter;
-  public Shoot(Shooter shooter) { 
-    addRequirements(shooter);  
-    this.shooter = shooter;   
+public class MoveBallPositioner extends CommandBase {
+  /** Creates a new MoveBallPositioner. */
+  private BallFeeder ballFeeder;
+  public MoveBallPositioner(BallFeeder ballFeeder) {
+    addRequirements(ballFeeder);
+    this.ballFeeder = ballFeeder;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -23,13 +23,13 @@ public class Shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setShootMotorSpeed(0.5);
+    ballFeeder.setPositionerSpeed(-0.25);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.setShootMotorSpeed(0);
+    ballFeeder.setPositionerSpeed(0);
   }
 
   // Returns true when the command should end.

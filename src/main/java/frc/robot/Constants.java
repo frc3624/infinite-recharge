@@ -19,7 +19,8 @@ package frc.robot;
  */
 public final class Constants {
     //Controller
-    public static final int XBOX_A_BUTTON = 0;
+    public static final int XBOX_A_BUTTON = 1;
+    public static final int XBOX_B_BUTTON = 2;
 
     //Driving
     public static final int DRIVE_LEFT_MASTER_ID = 1; // Front Left
@@ -29,7 +30,7 @@ public final class Constants {
 
     //Shooting
     public static final int SHOOT_MOTOR_ID = 27;
-
+    public static final int SHOOT_POSITIONER_MOTOR_ID = 9;
     /**
      * We have many more IDs to get for this robot. This is going to be a living nightmare rip
      */

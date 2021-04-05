@@ -12,17 +12,19 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   private TalonFX shootMotor;
+  
   /** Creates a new Shoot. */
   public Shooter() {
-    shootMotor = new TalonFX(Constants.SHOOT_MOTOR_ID);
+    shootMotor = new TalonFX(Constants.SHOOT_MOTOR_ID);   
   }
 
-  public void setMotorSpeed(double speed) {
+  public void setShootMotorSpeed(double speed) {
     shootMotor.set(ControlMode.PercentOutput, speed);
+    System.out.println(shootMotor.getSelectedSensorPosition());
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    
   }
 }
