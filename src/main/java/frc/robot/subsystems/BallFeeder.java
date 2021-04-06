@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +24,6 @@ public class BallFeeder extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("positionerMotor", positionerMotor.getSelectedSensorPosition());
     // This method will be called once per scheduler run
   }
 }

@@ -4,18 +4,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drive;
 
 public class DriveTrain extends CommandBase {
   private Drive commandDrive;
-  private XboxController commandController;
+  private Joystick shootStick;
   /** Creates a new DriveTrain. */
-  public DriveTrain(Drive drive, XboxController commandController) {
+  public DriveTrain(Drive drive, Joystick shootStick) {
     this.commandDrive = drive;
-    this.commandController = commandController;
+    this.shootStick = shootStick;
     addRequirements(commandDrive);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -27,7 +27,7 @@ public class DriveTrain extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    commandDrive.arcadeDrive(-commandController.getY(Hand.kLeft), commandController.getX(Hand.kRight));
+    commandDrive.arcadeDrive(-shootStick.getY(), shootStick.getZ());
   }
 
   // Called once the command ends or is interrupted.

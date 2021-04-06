@@ -52,10 +52,10 @@ public class RobotContainer {
     //driver1 = new XboxController(0);
     shootStick = new Joystick(0);
     trackButton = new JoystickButton(shootStick, 1);
-    speed1Button = new JoystickButton(shootStick, 8);
-    speed2Button = new JoystickButton(shootStick, 10);
-    speed3Button = new JoystickButton(shootStick, 12);
-    speed4Button = new JoystickButton(shootStick, 7);
+    speed1Button = new JoystickButton(shootStick, 10);
+    speed2Button = new JoystickButton(shootStick, 12);
+    speed3Button = new JoystickButton(shootStick, 9);
+    speed4Button = new JoystickButton(shootStick, 11);
 
     //driver1ButtonA = new JoystickButton(driver1, Constants.XBOX_A_BUTTON);
     //driver1ButtonB = new JoystickButton(driver1, Constants.XBOX_B_BUTTON);
@@ -68,7 +68,7 @@ public class RobotContainer {
   }
 
   private void configureCommands() {
-    driveTrain = new DriveTrain(drive, driver1);
+    driveTrain = new DriveTrain(drive, shootStick);
     moveBallPositioner = new MoveBallPositioner(feeder);
     speed1 = new Speed1(shooter);
     speed2 = new Speed2(shooter);
