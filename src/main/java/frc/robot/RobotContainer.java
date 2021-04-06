@@ -49,9 +49,9 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    driver1 = new XboxController(0);
-    shootStick = new Joystick(1);
-
+    //driver1 = new XboxController(0);
+    shootStick = new Joystick(0);
+    trackButton = new JoystickButton(shootStick, 1);
     speed1Button = new JoystickButton(shootStick, 8);
     speed2Button = new JoystickButton(shootStick, 10);
     speed3Button = new JoystickButton(shootStick, 12);
