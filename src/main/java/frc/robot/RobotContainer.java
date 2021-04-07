@@ -11,8 +11,8 @@ import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
   // The Buttons and Controllers
-  private XboxController driver1;
-  private Joystick shootStick;
+  //private XboxController driver1;
+  private XboxController shootStick;
   private JoystickButton speed1Button;
   private JoystickButton speed2Button;
   private JoystickButton speed3Button;
@@ -50,12 +50,12 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     //driver1 = new XboxController(0);
-    shootStick = new Joystick(0);
-    trackButton = new JoystickButton(shootStick, 1);
-    speed1Button = new JoystickButton(shootStick, 10);
-    speed2Button = new JoystickButton(shootStick, 12);
-    speed3Button = new JoystickButton(shootStick, 9);
-    speed4Button = new JoystickButton(shootStick, 11);
+    shootStick = new XboxController(0);
+    trackButton = new JoystickButton(shootStick, 6);
+    speed1Button = new JoystickButton(shootStick, 1);
+    speed2Button = new JoystickButton(shootStick, 3);
+    speed3Button = new JoystickButton(shootStick, 4);
+    speed4Button = new JoystickButton(shootStick, 2);
 
     //driver1ButtonA = new JoystickButton(driver1, Constants.XBOX_A_BUTTON);
     //driver1ButtonB = new JoystickButton(driver1, Constants.XBOX_B_BUTTON);

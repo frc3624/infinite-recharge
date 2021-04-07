@@ -34,6 +34,6 @@ public class Drive extends SubsystemBase {
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    diffDrive.arcadeDrive(xSpeed, zRotation);
+    diffDrive.arcadeDrive(xSpeed, zRotation*0.8);
   }
 }

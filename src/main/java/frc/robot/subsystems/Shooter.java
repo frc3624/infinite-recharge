@@ -20,7 +20,7 @@ public class Shooter extends SubsystemBase {
 
   public void setShootMotorSpeed(double speed) {
     shootMotor.set(ControlMode.PercentOutput, speed);
-    System.out.println(shootMotor.getSelectedSensorPosition());
+    //System.out.println(shootMotor.getSelectedSensorPosition());
   }
 
   @Override
