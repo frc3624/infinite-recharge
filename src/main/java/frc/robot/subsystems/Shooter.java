@@ -1,30 +1,44 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import static frc.robot.Constants.SHOOTER_MOTOR_ID;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private TalonFX shootMotor;
-  
-  /** Creates a new Shoot. */
-  public Shooter() {
-    shootMotor = new TalonFX(Constants.SHOOT_MOTOR_ID);   
-  }
+	// PID Shooter, still WIP
+	private final static double SHOOTER_WHEEL_RADIUS = 2.0 / 12.0;
+	//private final static int MAXRPM = 5200;
 
-  public void setShootMotorSpeed(double speed) {
-    shootMotor.set(ControlMode.PercentOutput, speed);
-    //System.out.println(shootMotor.getSelectedSensorPosition());
-  }
+	private final WPI_TalonFX shooterMotor = new WPI_TalonFX(SHOOTER_MOTOR_ID);
+	private final double kP = .135;
+	private final double kI = kP * .001;
+	private final double kD = kP * 20;
 
-  @Override
-  public void periodic() {
-    
-  }
+	public Shooter() {
+		shooterMotor.config_kP(0, kP);
+		shooterMotor.config_kI(0, kI);
+		shooterMotor.config_kD(0, kD);
+	}
+
+	@Override
+	public void periodic() {
+	}
+
+	public void displayOnShuffleboard() {
+		SmartDashboard.putNumber("Velocity", shooterMotor.getSelectedSensorVelocity());
+	}
+
+	public void setLinearSpeed(double linearVelocity) {
+		double rotationalVelocity = linearVelocity / SHOOTER_WHEEL_RADIUS;
+		shooterMotor.set(ControlMode.Velocity, rotationalVelocity);
+	}
+
+	public void setShootMotorSpeed(double percent) {
+		shooterMotor.set(ControlMode.PercentOutput, percent);
+	}
+	
 }
