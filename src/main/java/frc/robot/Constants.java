@@ -29,24 +29,7 @@ public final class Constants {
 	public static final int SHOOTER_MOTOR_ID = 27;
 	public static final int BALL_TRACK_ID = 20;
 	public static final int INTAKE_MOTOR_ID = 10;
-
-	//Climbing
-	public static final int LEFT_CLIMB_MOTOR_ID = 5;
-	public static final int RIGHT_CLIMB_MOTOR_ID = 6;
-
 	public static final int PCM_CAN_ID = 0;
-	public static final int FALCON_COOL_PCM_ID = 0;
-	public static final int LEFT_CLIMB_SOLENOID_PCM_ID = 5;
-	public static final int RIGHT_CLIMB_SOLENOID_PCM_ID = 6;
-
-	//Control panel
-
-	//
-
-
-	/**
-	 * We have many more IDs to get for this robot. This is going to be a living nightmare rip
-	 */
 	
 
 	//Controller stuff

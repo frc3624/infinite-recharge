@@ -4,7 +4,10 @@
 
 ## 2021 Revision
 
-This is being written as of the start of the 2021 Summer. A lot of this code will not be seen through, and this instead serves as an archive of our 2019-2020 Infinite Recharge Robot Code. The current version on GitHub was changed (poorly) for the 2021 Infinite Recharge At Home Challenges. Depending on Mr. Wilson's judgement on continuing work on this robot, we may never finish this robot, but this code remains.
+This is being written in mid October prior to our in house invitational at High School West. The current plan according to Mr. Wilson is to revise Infinite Recharge so it's at least able to drive and pick up and shoot balls. That's it. Easier said than done due to PID tuning (and this being our first documented shooter). Updates will merge with the master branch once the code is completed.
+
+
+Note, this means we are DELETING all other prior subsystems/commands. If you would like to see the state of the code prior to these changes refer to [this](https://github.com/frc3624/infinite-recharge/tree/5bcc2d8100bd28aaf7b11671c074b383199bf72c)
 
 ## Latest Changes (As of March 2020)
 

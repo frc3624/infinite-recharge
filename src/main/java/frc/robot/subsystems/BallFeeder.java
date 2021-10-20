@@ -11,18 +11,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class BallFeeder extends SubsystemBase {
-  /** Creates a new BallFeeder. */
-  private TalonSRX positionerMotor;
-  public BallFeeder() {
-    positionerMotor = new TalonSRX(Constants.SHOOT_POSITIONER_MOTOR_ID);
-  }
+	/** Creates a new BallFeeder. */
+	private TalonSRX positionerMotor;
+	public BallFeeder() {
+		positionerMotor = new TalonSRX(Constants.BALL_TRACK_ID);
+	}
 
-  public void setPositionerSpeed(double speed) {
-    positionerMotor.set(ControlMode.PercentOutput, speed);
-  }
+	public void setPositionerSpeed(double speed) {
+		positionerMotor.set(ControlMode.PercentOutput, speed);
+	}
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+	@Override
+	public void periodic() {
+		// This method will be called once per scheduler run
+	}
 }

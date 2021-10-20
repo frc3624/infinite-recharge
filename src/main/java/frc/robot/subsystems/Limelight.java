@@ -1,29 +1,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
 
-	private final Servo servo = new Servo(9);
-
-	private static final double UP_ANGLE = 225;
-	private static final double DOWN_ANGLE = 45;
-	private static final double FORWARD_ANGLE = 180;
-
 	public Limelight() {
 
-	}
-
-	public void lookForward() {
-		servo.setAngle(FORWARD_ANGLE);
-	}
-	public void lookUp() {
-		servo.setAngle(UP_ANGLE);
-	}
-	public void lookDown() {
-		servo.setAngle(DOWN_ANGLE);
 	}
 
 	/*
@@ -39,8 +22,8 @@ public class Limelight extends SubsystemBase {
 	/**
 	 * @return Whether or not the Limelight has any valid targets
 	 */
-	public double hasValidTarget() {
-		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+	public boolean hasValidTarget() {
+		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 0 ? true : false;
 	}
 
 	/**
@@ -69,6 +52,24 @@ public class Limelight extends SubsystemBase {
 	 */
 	public double getTargetArea() {
 		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+	}
+
+	public enum LedMode{
+		CURRENT(0),OFF(1),BLINK(2),ON(3);
+
+		private final int value;
+
+		private LedMode(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return value;
+		}
+	}
+
+	public void setLedMode(LedMode ledMode) {
+		NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(ledMode.getValue());
 	}
 
 	@Override

@@ -5,33 +5,41 @@
 /* the project.                                                                                                                             */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climbing;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Limelight.LedMode;
+import frc.util.RollingAverage;
+import frc.robot.subsystems.Limelight;
 
-public class Climb extends CommandBase {
-	private final Climber climber;
-	private final double speed;
+public class Shoot extends CommandBase {
+	private final Limelight limelight;
+	private final Shooter shooter;
+	private RollingAverage rollingAverage;
 	
-	public Climb(Climber climber, double speed) {
-		this.climber = climber;
-		this.speed = speed;
-		addRequirements(climber);
+	public Shoot(Shooter shooter, Limelight limelight) {
+		this.shooter = shooter;
+		this.limelight = limelight;
+		addRequirements(shooter);
 	}
 
 	@Override
 	public void initialize() {
+		limelight.setLedMode(LedMode.ON);
 	}
 
 	@Override
 	public void execute() {
-		climber.move(speed);
+		if(limelight.hasValidTarget()) {
+			rollingAverage.add(limelight.getVerticalDistance());
+			//shooter.setPosition(rollingAverage.get());
+		}
 	}
 
 	@Override
 	public void end(boolean interrupted) {
-		climber.move(0);
+		limelight.setLedMode(LedMode.CURRENT);
 	}
 
 	@Override
