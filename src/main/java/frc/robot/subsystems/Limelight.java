@@ -1,10 +1,13 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
 
+	private final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+	
 	public Limelight() {
 
 	}
@@ -23,35 +26,35 @@ public class Limelight extends SubsystemBase {
 	 * @return Whether or not the Limelight has any valid targets
 	 */
 	public boolean hasValidTarget() {
-		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 0 ? true : false;
+		return table.getEntry("tv").getDouble(0) == 0 ? true : false;
 	}
 
 	/**
 	 * @return The horizontal displacement from where the Limelight is aimed to the target
 	 */
 	public double getHorizontalDistance() {
-		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+		return table.getEntry("tx").getDouble(0);
 	}
 
 	/**
 	 * @return The vertical displacement from where the Limelight is aimed to the target
 	 */
 	public double getVerticalDistance() {
-		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+		return table.getEntry("ty").getDouble(0);
 	}
 
 	/**
 	 * @return The rotation of the target relative to the face of the Limelight
 	 */
 	public double getTargetAngle() {
-		return -NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
+		return -table.getEntry("ts").getDouble(0);
 	}
 
 	/**
 	 * @return The area of the Limelight's FOV the target takes up (0.0 to 100.0 of the image)
 	 */
 	public double getTargetArea() {
-		return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+		return table.getEntry("ta").getDouble(0);
 	}
 
 	public enum LedMode{
@@ -69,7 +72,7 @@ public class Limelight extends SubsystemBase {
 	}
 
 	public void setLedMode(LedMode ledMode) {
-		NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(ledMode.getValue());
+		table.getEntry("ledMode").setNumber(ledMode.getValue());
 	}
 
 	@Override
