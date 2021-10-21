@@ -25,6 +25,10 @@ public class Intake extends SubsystemBase {
 	public void periodic() {
 	}
 
+	/**
+	 * Sets speed for the intake wheels
+	 * @param speed Value from [-1,1]
+	 */
 	public void spinIntakeWheels(double speed) {
 		intakeMotor.set(ControlMode.PercentOutput, speed);
 	}

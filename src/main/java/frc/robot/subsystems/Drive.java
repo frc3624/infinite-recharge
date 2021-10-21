@@ -75,11 +75,12 @@ public class Drive extends SubsystemBase {
 		return currentGear;
 	}
 
+	/**
+	 * Sets speed for the drive motors utilizing inputs from the joysticks.
+	 * @param xSpeed Forward/Backward direction from the joysticks
+	 * @param zRotation Left/Right direction from the joysticks
+	 */
 	public void arcadeDrive(double xSpeed, double zRotation) {
 		diffDrive.arcadeDrive(speedMultiplier * xSpeed, speedMultiplier * .9 * zRotation); // .9 requested by drive team, serves no real purpose
-	}
-
-	@Override
-	public void periodic() {
 	}
 }
