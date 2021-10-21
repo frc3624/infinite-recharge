@@ -27,14 +27,13 @@ public final class Constants {
 
 	//Shooting and picking up balls
 	public static final int SHOOTER_MOTOR_ID = 27;
-	public static final int BALL_TRACK_ID = 20;
+	public static final int BALL_TRACK_ID = 7;
 	public static final int INTAKE_MOTOR_ID = 10;
 	public static final int PCM_CAN_ID = 0;
 	
 
 	//Controller stuff
 	public static final int XBOX_1_ID = 0;
-	public static final int XBOX_2_ID = 1;
 	public static final int BUTTON_A = 1;
 	public static final int BUTTON_B = 2;
 	public static final int BUTTON_X = 3;

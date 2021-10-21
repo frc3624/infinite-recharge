@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drive;
 
-public class JoystickDrive extends CommandBase {
+public class DriveTrain extends CommandBase {
 	@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 	private final Drive drive;
 	private final XboxController driveController;
 
-	public JoystickDrive(Drive drive, XboxController driveController) {
+	public DriveTrain(Drive drive, XboxController driveController) {
 		this.drive = drive;
 		this.driveController = driveController;
 		addRequirements(drive);

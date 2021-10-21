@@ -13,17 +13,17 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Conveyor extends SubsystemBase {
-	
+public class BallTrack extends SubsystemBase {
 	private final WPI_TalonSRX ballTrack = new WPI_TalonSRX(BALL_TRACK_ID);
-		public Conveyor() {
+	
+	public BallTrack() {
 	}
 
 	@Override
 	public void periodic() {
 	}
 
-	public void setMotorSpeed(double a) {
-		ballTrack.set(ControlMode.PercentOutput, a);
+	public void setMotorSpeed(double speed) {
+		ballTrack.set(ControlMode.PercentOutput, speed);
 	}
 }
