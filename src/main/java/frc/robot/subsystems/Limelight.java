@@ -57,6 +57,7 @@ public class Limelight extends SubsystemBase {
 		return table.getEntry("ta").getDouble(0);
 	}
 
+	// This enum's job is to store values for the states of the green leds on the limelight
 	public enum LedMode{
 		CURRENT(0),OFF(1),BLINK(2),ON(3);
 
