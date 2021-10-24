@@ -32,15 +32,4 @@ public class DPadButton extends Button {
     public boolean get() {
         return controller.getPOV() == direction.getAngle();
     }
-
-
-
-
-
-
-
-
-
-
-
 }

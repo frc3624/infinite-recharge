@@ -1,24 +1,19 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallTrack;
 
-/**
- * High likelihood this section is not completed properly in interest saving time for the invitational
- * The proper way to do this would involve checking about 4 DIO limit switches so we could know how many
- * balls are present in the ball track system. Due to the time constraints, we'll most likely just resort
- * to guessing how many balls are being contained at the current moment and not adjusting the motors to 
- * correct for every new ball introduced.
-*/
-
 public class RunBallTrack extends CommandBase {
-	@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 	private final BallTrack ballTrack;
-	private final double speed;
+  private final double speed;
 
 	public RunBallTrack(BallTrack ballTrack, double speed) {
 		this.ballTrack = ballTrack;
-		this.speed = speed;
+    this.speed = speed;
 		addRequirements(ballTrack);
 	}
 

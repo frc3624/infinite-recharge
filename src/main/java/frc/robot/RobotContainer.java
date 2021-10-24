@@ -1,10 +1,10 @@
 package frc.robot;
 
-import static frc.robot.Constants.XBOX_1_ID;
- import static frc.robot.Constants.BUTTON_B;
- import static frc.robot.Constants.BUTTON_RB;
+import static frc.robot.Constants.BUTTON_B;
  import static frc.robot.Constants.BUTTON_LB;
+ import static frc.robot.Constants.BUTTON_RB;
  import static frc.robot.Constants.BUTTON_X;
+ import static frc.robot.Constants.XBOX_1_ID;
  import edu.wpi.first.wpilibj.XboxController;
  import edu.wpi.first.wpilibj2.command.Command;
  import edu.wpi.first.wpilibj2.command.ConditionalCommand;
@@ -16,16 +16,21 @@ import static frc.robot.Constants.XBOX_1_ID;
  import frc.robot.commands.auto.DriveStraight;
  import frc.robot.commands.drive.DriveTrain;
  import frc.robot.commands.intake.RunBallTrack;
- import frc.robot.commands.intake.SetIntake;
+ import frc.robot.commands.intake.RunIntakeSystem;
+ import frc.robot.commands.shooting.RunShootingSystem;
  import frc.robot.commands.speedshift.DefenseGear;
  import frc.robot.commands.speedshift.HighGear;
  import frc.robot.commands.speedshift.LowGear;
  import frc.robot.subsystems.BallTrack;
  import frc.robot.subsystems.Drive;
  import frc.robot.subsystems.Intake;
+ import frc.robot.subsystems.Limelight;
  import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
+	// Limelight
+	 private final Limelight limelight = new Limelight();
+
 	// Controllers
 	 private static XboxController driver1 = new XboxController(XBOX_1_ID);
 
@@ -53,14 +58,18 @@ public class RobotContainer {
 	 private final HighGear highGear = new HighGear(drive); 
 	 private final ConditionalCommand speedShift = new ConditionalCommand(lowGear, highGear, drive::isHighGear);
 	
+	/**
+	 * RunShootingSystem is a ParallelCommandGroup encompassing AdvanceBallTrack and RunIntake
+	 * Keeping RunBallTrack because the auto unjamming is disabled for now
+	 */
 	// Shooting, Intake, and Ball Track Commands
-	 //private final Shoot shoot = new Shoot(shooter, .48);
-	 private final SetIntake setIntake = new SetIntake(intake, 0.6);
 	 private final RunBallTrack runBallTrackInwards = new RunBallTrack(ballTrack, 1);
 	 private final RunBallTrack runBallTrackOutwards = new RunBallTrack(ballTrack, -1);
+	 private final RunIntakeSystem intakeSystem = new RunIntakeSystem(intake, ballTrack);
+	 private final RunShootingSystem shootingSystem = new RunShootingSystem(ballTrack, shooter, limelight);
 
 	// Our bs auto command just so we get points
-	private final DriveStraight driveStraight = new DriveStraight(drive, .5, 3); 
+	 private final DriveStraight driveStraight = new DriveStraight(drive, .5, 3); 
 
 	public RobotContainer() {
 		configureButtonBindings();
@@ -72,8 +81,8 @@ public class RobotContainer {
 		defenseShiftButton.whenPressed(defenseGear);
 		lowGearButton.whenPressed(lowGear);
 
-		//shootButton.whileHeld(shoot);
-		intakeButton.whileHeld(setIntake);
+		//shootButton.toggleWhenPressed(shootingSystem);
+		intakeButton.toggleWhenPressed(intakeSystem);
 		ballTrackOutButton.whileHeld(runBallTrackOutwards);
 		ballTrackInButton.whileHeld(runBallTrackInwards);
 	}

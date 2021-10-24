@@ -3,14 +3,11 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
-public class SetIntake extends CommandBase {
-	@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+public class RunIntake extends CommandBase {
 	private final Intake intake;
-	private final double speed;
 
-	public SetIntake(Intake intake, double speed) {
+	public RunIntake(Intake intake) {
 		this.intake = intake;
-		this.speed = speed;
 		addRequirements(intake);
 	}
 
@@ -20,7 +17,7 @@ public class SetIntake extends CommandBase {
 
 	@Override
 	public void execute() {
-		intake.spinIntakeWheels(speed);
+		intake.spinIntakeWheels(.6);
 	}
 
 	@Override
