@@ -33,11 +33,9 @@ public final class Constants {
 	
 	// Limit Switches
 	 public static final int DIO_START_ID = 5;
-	 public static final int DIO_POS_1_ID = 1;
-	 public static final int DIO_POS_2_ID = 2;
-	 public static final int DIO_POS_3_ID = 3;
-	 public static final int DIO_POS_4_ID = 4;
-
+	 public static final int DIO_POS_1_ID = 2;
+	 public static final int DIO_POS_2_ID = 3;
+	 public static final int DIO_POS_3_ID = 4;
 
 	// Controller Buttons
 	 public static final int XBOX_1_ID = 0;

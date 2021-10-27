@@ -15,7 +15,6 @@
     "**/*~": true
   },
   "editor.foldingStrategy": "indentation",
-  "editor.wordWrap": "on",
   "editor.minimap.enabled": false,
   "editor.tabSize": 2
 }

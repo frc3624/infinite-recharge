@@ -4,13 +4,15 @@
 
 package frc.robot.commands.shooting;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import frc.robot.subsystems.BallTrack;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
-public class RunShootingSystem extends ParallelCommandGroup {
+// We are using a separate class so it's easier to understand our approach when looking at this folder
+public class RunShootingSystem extends ParallelDeadlineGroup {
   public RunShootingSystem(BallTrack ballTrack, Shooter shooter, Limelight limelight) {
-    addCommands(new EmptyBallTrack(ballTrack), new Shoot(shooter, limelight));
+    super(new EmptyBallTrack(ballTrack));
+    addCommands(new Shoot(shooter, limelight));
   }
 }

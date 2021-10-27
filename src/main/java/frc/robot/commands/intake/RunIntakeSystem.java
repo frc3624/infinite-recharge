@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.BallTrack;
 import frc.robot.subsystems.Intake;
 
+// We are using a separate class so it's easier to understand our approach when looking at this folder
 public class RunIntakeSystem extends ParallelCommandGroup {
   public RunIntakeSystem(Intake intake, BallTrack ballTrack) {
     addCommands(new RunIntake(intake), new AdvanceBallTrack(ballTrack));

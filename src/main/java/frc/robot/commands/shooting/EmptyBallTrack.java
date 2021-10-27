@@ -27,6 +27,6 @@ public class EmptyBallTrack extends CommandBase {
 
 	@Override
 	public boolean isFinished() {
-		return !ballTrack.hasBalls();
+		return false;//return !ballTrack.hasBalls(); 
 	}
 }

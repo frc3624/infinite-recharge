@@ -24,14 +24,12 @@ import static frc.robot.Constants.DIO_START_ID;
 import static frc.robot.Constants.DIO_POS_1_ID;
 import static frc.robot.Constants.DIO_POS_2_ID;
 import static frc.robot.Constants.DIO_POS_3_ID;
-import static frc.robot.Constants.DIO_POS_4_ID;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.DigitalInput;
 // import edu.wpi.first.wpilibj.Timer;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BallTrack extends SubsystemBase {
@@ -41,8 +39,7 @@ public class BallTrack extends SubsystemBase {
 	private final DigitalInput pos1Switch = new DigitalInput(DIO_POS_1_ID);
 	private final DigitalInput pos2Switch = new DigitalInput(DIO_POS_2_ID);
 	private final DigitalInput pos3Switch = new DigitalInput(DIO_POS_3_ID);
-	private final DigitalInput pos4Switch = new DigitalInput(DIO_POS_4_ID);
-	private DigitalInput[] limSwitches = {pos1Switch, pos2Switch, pos3Switch, pos4Switch};
+	private final DigitalInput[] limSwitches = {pos1Switch, pos2Switch, pos3Switch};
 
 	// // Jamming protection
 	// private Timer timer = new Timer();
@@ -58,29 +55,17 @@ public class BallTrack extends SubsystemBase {
 	public void periodic() {
 	}
 
-	public boolean isBallAtStart() {
+	private boolean isBallAtStart() {
 		return !startSwitch.get();
 	}
-	public boolean isBallAtPos1() {
-		return !pos1Switch.get();
-	}
-	public boolean isBallAtPos2() {
-		return !pos2Switch.get();
-	}
-	public boolean isBallAtPos3() {
-		return !pos3Switch.get();
-	}
-	public boolean isBallAtPos4() {
-		return !pos4Switch.get();
-	}
 	public boolean hasBalls() {
-		return isBallAtPos1() || isBallAtPos2() || isBallAtPos3() || isBallAtPos4();
+		return !limSwitches[0].get() || !limSwitches[1].get() || !limSwitches[2].get();
 	}
 	public boolean isFull() {
-		return isBallAtPos1() && isBallAtPos2() && isBallAtPos3() && isBallAtPos4();
-
+		return !limSwitches[0].get() && !limSwitches[1].get() && !limSwitches[2].get();
 	}
 
+	// temporary version of this method. The commented out version will be instated once we have the time to fix the automatic unjamming
 	public void setMotorSpeed(double speed) {
 		ballTrack.set(ControlMode.PercentOutput, speed);
 	}
@@ -91,25 +76,38 @@ public class BallTrack extends SubsystemBase {
 	 */
 	public int getCurrentPosition() {
 		for(int i = limSwitches.length - 1; i >= 0; i--) {
-			if (!limSwitches[i].get()) {
+			if (!limSwitches[i].get()) { // .get() returns false when activated (weird ik), so we're negating it
 				return i;
 			}
 		}
-		return 0;
+		return -1	;
 	}
 
+	/**
+	 * Recursive approach to advancing the ball in the track
+	 * 
+	 * Check if a new ball is entering the system, and if it is, spin the track until the furthest ball advances another position
+	 * Once this is done, call the method again if there is another ball at the start, and advance the ball to the next position
+	 * @param switchVal Location of the ball which is the furthest along
+	 */
 	public void advanceToNextPosition(int switchVal) {
 		if(isBallAtStart()) {
-			System.out.println(!limSwitches[switchVal].get());
-			while(!limSwitches[switchVal].get()) {
-				ballTrack.set(ControlMode.PercentOutput, .5);
+			if(switchVal == -1) {
+				while(limSwitches[0].get()) {
+					ballTrack.set(ControlMode.PercentOutput, .8);
+				}
+				ballTrack.set(ControlMode.PercentOutput, 0);
+			} else {
+				while(limSwitches[switchVal].get()) { 
+					ballTrack.set(ControlMode.PercentOutput, .8);
+				}
+				ballTrack.set(ControlMode.PercentOutput, 0);
 			}
-			ballTrack.set(ControlMode.PercentOutput, 0);
 		}
-		if(switchVal < limSwitches.length - 1 && isBallAtStart())
-			advanceToNextPosition(switchVal + 1);
+		if(switchVal < limSwitches.length - 1 && isBallAtStart()){
+			advanceToNextPosition(getCurrentPosition() + 1);
+		}
 	}
-
 
 	// Mr. Wilson said to ditch the unjamming code, we'll bring it back if we want to have it 
 

@@ -3,6 +3,7 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
+// Temporary command as long as the automatic unjamming is not sorted out
 public class RunIntake extends CommandBase {
 	private final Intake intake;
 
