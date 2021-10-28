@@ -5,8 +5,8 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.subsystems.BallTrack;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.ballhandling.Intake;
+import frc.robot.subsystems.ballhandling.BallTrack;
 
 // We are using a separate class so it's easier to understand our approach when looking at this folder
 public class RunIntakeSystem extends ParallelCommandGroup {

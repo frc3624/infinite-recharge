@@ -30,6 +30,7 @@ public final class Constants {
 	 public static final int BALL_TRACK_ID = 7;
 	 public static final int INTAKE_MOTOR_ID = 10;
 	 public static final int PCM_CAN_ID = 0;
+	 public static final int kTimeoutMs = 30;
 	
 	// Limit Switches
 	 public static final int DIO_START_ID = 5;

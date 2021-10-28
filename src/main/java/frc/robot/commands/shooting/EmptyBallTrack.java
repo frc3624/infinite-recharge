@@ -1,7 +1,7 @@
 package frc.robot.commands.shooting;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BallTrack;
+import frc.robot.subsystems.ballhandling.BallTrack;
 
 public class EmptyBallTrack extends CommandBase {
 	private final BallTrack ballTrack;

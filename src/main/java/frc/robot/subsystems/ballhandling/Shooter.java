@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.ballhandling;
 
 import static frc.robot.Constants.SHOOTER_MOTOR_ID;
 
@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.Constants.kTimeoutMs;
 
 public class Shooter extends SubsystemBase {
 	// PID Shooter, still WIP
@@ -47,6 +48,13 @@ public class Shooter extends SubsystemBase {
 		shooterMotor.config_kP(0, kP);
 		shooterMotor.config_kI(0, kI);
 		shooterMotor.config_kD(0, kD);
+
+		// Sets the minimum percent output
+		shooterMotor.configNominalOutputForward(0, kTimeoutMs);
+		shooterMotor.configNominalOutputReverse(0, kTimeoutMs);
+		// Sets the maximum percent output
+		shooterMotor.configPeakOutputForward(1, kTimeoutMs);
+		shooterMotor.configPeakOutputReverse(-1, kTimeoutMs);
 	}
 
 	@Override

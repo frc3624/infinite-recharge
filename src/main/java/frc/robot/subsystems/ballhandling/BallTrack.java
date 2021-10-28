@@ -17,7 +17,7 @@
  * Create ParallelCommandGroup w/ Shooting in order to dump 4 balls at once
  * 
  */
-package frc.robot.subsystems;
+package frc.robot.subsystems.ballhandling;
 
 import static frc.robot.Constants.BALL_TRACK_ID;
 import static frc.robot.Constants.DIO_START_ID;

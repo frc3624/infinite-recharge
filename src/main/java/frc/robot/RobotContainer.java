@@ -15,18 +15,18 @@ import static frc.robot.Constants.BUTTON_B;
  import frc.controls.TriggerButton.Trigger;
  import frc.robot.commands.auto.DriveStraight;
  import frc.robot.commands.drive.DriveTrain;
-import frc.robot.commands.intake.AdvanceBallTrack;
-import frc.robot.commands.intake.RunBallTrack;
+ import frc.robot.commands.intake.AdvanceBallTrack;
+ import frc.robot.commands.intake.RunBallTrack;
  import frc.robot.commands.intake.RunIntakeSystem;
  import frc.robot.commands.shooting.RunShootingSystem;
  import frc.robot.commands.speedshift.DefenseGear;
  import frc.robot.commands.speedshift.HighGear;
  import frc.robot.commands.speedshift.LowGear;
- import frc.robot.subsystems.BallTrack;
  import frc.robot.subsystems.Drive;
- import frc.robot.subsystems.Intake;
+ import frc.robot.subsystems.ballhandling.Intake;
  import frc.robot.subsystems.Limelight;
- import frc.robot.subsystems.Shooter;
+ import frc.robot.subsystems.ballhandling.BallTrack;
+ import frc.robot.subsystems.ballhandling.Shooter;
 
 public class RobotContainer {
 	// Limelight
@@ -66,8 +66,7 @@ public class RobotContainer {
 	// Shooting, Intake, and Ball Track Commands
 	 private final RunBallTrack runBallTrackInwards = new RunBallTrack(ballTrack, 1);
 	 private final RunBallTrack runBallTrackOutwards = new RunBallTrack(ballTrack, -1);
-	 private final AdvanceBallTrack intakeSystem = new AdvanceBallTrack(ballTrack);
-	 //private final RunIntakeSystem intakeSystem = new RunIntakeSystem(intake, ballTrack);
+	 private final RunIntakeSystem intakeSystem = new RunIntakeSystem(intake, ballTrack);
 	 private final RunShootingSystem shootingSystem = new RunShootingSystem(ballTrack, shooter, limelight);
 
 	// Our bs auto command just so we get points

@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.subsystems.ballhandling;
 
 import static frc.robot.Constants.INTAKE_MOTOR_ID;
 
