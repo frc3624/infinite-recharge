@@ -59,10 +59,10 @@ public class BallTrack extends SubsystemBase {
 		return !startSwitch.get();
 	}
 	public boolean hasBalls() {
-		return !limSwitches[0].get() || !limSwitches[1].get() || !limSwitches[2].get();
+		return !pos1Switch.get() || !pos2Switch.get() || !pos3Switch.get();
 	}
 	public boolean isFull() {
-		return !limSwitches[0].get() && !limSwitches[1].get() && !limSwitches[2].get();
+		return !pos1Switch.get() && !pos2Switch.get() && !pos3Switch.get();
 	}
 
 	// temporary version of this method. The commented out version will be instated once we have the time to fix the automatic unjamming
@@ -83,7 +83,7 @@ public class BallTrack extends SubsystemBase {
 		return -1	;
 	}
 
-	/**
+	/**	
 	 * Recursive approach to advancing the ball in the track
 	 * 
 	 * Check if a new ball is entering the system, and if it is, spin the track until the furthest ball advances another position
@@ -94,12 +94,12 @@ public class BallTrack extends SubsystemBase {
 		if(isBallAtStart()) {
 			if(switchVal == -1) {
 				while(limSwitches[0].get()) {
-					ballTrack.set(ControlMode.PercentOutput, .8);
+					ballTrack.set(ControlMode.PercentOutput, .6);
 				}
 				ballTrack.set(ControlMode.PercentOutput, 0);
 			} else {
 				while(limSwitches[switchVal].get()) { 
-					ballTrack.set(ControlMode.PercentOutput, .8);
+					ballTrack.set(ControlMode.PercentOutput, .6);
 				}
 				ballTrack.set(ControlMode.PercentOutput, 0);
 			}
@@ -107,6 +107,7 @@ public class BallTrack extends SubsystemBase {
 		if(switchVal < limSwitches.length - 1 && isBallAtStart()){
 			advanceToNextPosition(getCurrentPosition() + 1);
 		}
+		System.out.println(hasBalls());
 	}
 
 	// Mr. Wilson said to ditch the unjamming code, we'll bring it back if we want to have it 

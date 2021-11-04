@@ -28,8 +28,9 @@ public final class Constants {
 	// Intake, Conveyor, Shooting
 	 public static final int SHOOTER_MOTOR_ID = 27;
 	 public static final int BALL_TRACK_ID = 7;
-	 public static final int INTAKE_MOTOR_ID = 10;
+	 public static final int INTAKE_MOTOR_ID = 8;
 	 public static final int PCM_CAN_ID = 0;
+	 public static final int SOLENOID_ID = 0;
 	 public static final int kTimeoutMs = 30;
 	
 	// Limit Switches

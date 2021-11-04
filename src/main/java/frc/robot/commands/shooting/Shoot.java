@@ -10,13 +10,13 @@ package frc.robot.commands.shooting;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight.LedMode;
 import frc.robot.subsystems.ballhandling.Shooter;
-import frc.util.RollingAverage;
+///import frc.util.RollingAverage;
 import frc.robot.subsystems.Limelight;
 
 public class Shoot extends CommandBase {
 	private final Limelight limelight;
 	private final Shooter shooter;
-	private RollingAverage rollingAverage;
+	//private RollingAverage rollingAverage;
 	
 	public Shoot(Shooter shooter, Limelight limelight) {
 		this.shooter = shooter;
@@ -31,7 +31,8 @@ public class Shoot extends CommandBase {
 
 	@Override
 	public void execute() {
-		shooter.setLinearSpeed(5);
+		//shooter.setShootMotorSpeed(.6);
+		shooter.setLinearSpeed();
 		// We'll put in the limelight code once we are able to use it properly
 		// if(limelight.hasValidTarget()) {
 		// 	rollingAverage.add(limelight.getVerticalDistance());

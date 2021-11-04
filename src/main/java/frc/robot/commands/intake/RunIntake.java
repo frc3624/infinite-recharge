@@ -18,7 +18,7 @@ public class RunIntake extends CommandBase {
 
 	@Override
 	public void execute() {
-		intake.spinIntakeWheels(.6);
+		intake.spinIntakeWheels(.4);
 	}
 
 	@Override

@@ -5,7 +5,9 @@ import static frc.robot.Constants.SHOOTER_MOTOR_ID;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.kTimeoutMs;
 
@@ -36,19 +38,25 @@ public class Shooter extends SubsystemBase {
 	 * between the two measures and apply the necessary formula in order to calculate our linear speed.
 	*/
 
-	private final static double SHOOTER_WHEEL_RADIUS = 2.0 / 12.0;
+	private final static double SHOOTER_WHEEL_RADIUS = .1016; // radius in meters
 	//private final static int MAXRPM = 5200;
-
 	private final WPI_TalonFX shooterMotor = new WPI_TalonFX(SHOOTER_MOTOR_ID);
-	private final double kP = .135;
-	private final double kI = kP * .001;
-	private final double kD = kP * 20;
+	private double kP = 0.21;
+	private double kI = 0.0002;
+	private double kD = 2.3;
+	private double kF = 0.106;
+	private double linearVelocity = 0;
+
+	private final ShuffleboardTab tab = Shuffleboard.getTab("Shooting");
+	private final NetworkTableEntry velocityEntry = tab.add("Velocity", 0).getEntry();
+	private final NetworkTableEntry kPEntry = tab.add("kP", kP).getEntry();
+	private final NetworkTableEntry kIEntry = tab.add("kI", kI).getEntry();
+	private final NetworkTableEntry kDEntry = tab.add("kD", kD).getEntry();
+	private final NetworkTableEntry kFEntry = tab.add("kF", kF).getEntry();
+	private final NetworkTableEntry setVelocityEntry = tab.add("Set_Velocity", 0).getEntry();
+
 
 	public Shooter() {
-		shooterMotor.config_kP(0, kP);
-		shooterMotor.config_kI(0, kI);
-		shooterMotor.config_kD(0, kD);
-
 		// Sets the minimum percent output
 		shooterMotor.configNominalOutputForward(0, kTimeoutMs);
 		shooterMotor.configNominalOutputReverse(0, kTimeoutMs);
@@ -61,13 +69,25 @@ public class Shooter extends SubsystemBase {
 	public void periodic() {
 	}
 
-	public void displayOnShuffleboard() {
-		SmartDashboard.putNumber("Velocity", shooterMotor.getSelectedSensorVelocity());
+	private void setConstants() {
+		kP = kPEntry.getDouble(1.0);
+		kI = kIEntry.getDouble(1.0);
+		kD = kDEntry.getDouble(1.0);
+		kF = kFEntry.getDouble(1.0);
+		shooterMotor.config_kP(0, kP);
+		shooterMotor.config_kI(0, kI);
+		shooterMotor.config_kD(0, kD);
+		shooterMotor.config_kF(0, kF);
+		linearVelocity = setVelocityEntry.getDouble(1.0);
 	}
 
-	public void setLinearSpeed(double linearVelocity) {
-		double rotationalVelocity = linearVelocity / SHOOTER_WHEEL_RADIUS;
-		shooterMotor.set(ControlMode.Velocity, rotationalVelocity);
+	public void setLinearSpeed() {
+		shooterMotor.set(ControlMode.MotionMagic, linearVelocity);
+		setConstants();
+
+		//double rotationalVelocity = linearVelocity / SHOOTER_WHEEL_RADIUS;
+		shooterMotor.set(ControlMode.Velocity, linearVelocity);
+		velocityEntry.setDouble(shooterMotor.getSelectedSensorVelocity() * SHOOTER_WHEEL_RADIUS );
 	}
 
 	public void setShootMotorSpeed(double percent) {

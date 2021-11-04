@@ -8,17 +8,22 @@
 package frc.robot.subsystems.ballhandling;
 
 import static frc.robot.Constants.INTAKE_MOTOR_ID;
+import static frc.robot.Constants.PCM_CAN_ID;
+import static frc.robot.Constants.SOLENOID_ID;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+// Note for anybody who wants to use these. You probably are having issues importing this library. Go to the .json for REVRobotics
+// (this is located in vendordeps) and lower the version by .01. I hate REV Robotics
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake extends SubsystemBase {
-	
-	private final WPI_TalonSRX intakeMotor = new WPI_TalonSRX(INTAKE_MOTOR_ID);
+public  class Intake extends SubsystemBase {
+	private final CANSparkMax intakeMotor = new CANSparkMax(INTAKE_MOTOR_ID, MotorType.kBrushless);
+	private final Solenoid liftPiston = new Solenoid(PCM_CAN_ID, SOLENOID_ID);
 
 	public Intake() {
+		liftPiston.set(false);
 	}
 
 	@Override
@@ -30,6 +35,21 @@ public class Intake extends SubsystemBase {
 	 * @param speed Value from [-1,1]
 	 */
 	public void spinIntakeWheels(double speed) {
-		intakeMotor.set(ControlMode.PercentOutput, speed);
+		intakeMotor.set(-speed);
+	}
+
+	/**
+	 * Method to toggle the solenoid which is attached to the intake.
+	 * Will either draw or release the intake arm
+	 */
+	public void toggleIntakePosition() {
+		liftPiston.set(!liftPiston.get());
+	}
+
+	public void intakeUp() {
+		liftPiston.set(true);
+	}
+	public void intakeDown() {
+		liftPiston.set(false);
 	}
 }

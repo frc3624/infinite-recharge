@@ -14,7 +14,7 @@ different than for our projects. Installing these libraries requires the followi
 Navigate to this [link](https://docs.revrobotics.com/sparkmax/software-resources/spark-max-api-information#java-api) and make sure to install the
 Java API to your computer.
 
-After doing this, copy the link shown for "Online Installations" (should look like https://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json) and return to VS Code.
+After doing this, copy the link shown for "Online Installations" (should look like <https://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json>) and return to VS Code.
 
 Press Ctrl + Shift + P, and type in "Manage Vendor Libraries". Click on "Install new libraries (online)" and paste the link.
 
@@ -30,4 +30,19 @@ This is required if you plan to deploy or edit code for this robot.
 - Right Bumper:     High Gear
 - Right Trigger:    Low Gear
 - B Button:         Toggle Intake System
-- X Button:         Shoot Balls
+- X Button:         Toggle Shooting System
+
+- DPAD UP:          Move BallTrack forwards
+- DPAD DOWN:        Move BallTrack backwards
+- DPAD LEFT:        Move Intake Arm Up
+- DPAD RIGHT:       Move Intake Arm Down
+
+## Notes
+
+We have a few bugs with the code, some of it may be related to the hardware components though.
+
+- Can't move the robot if the intake is going
+- Finish PID Tuning
+- Set Limelight tuning for determining required velocity
+- Consolidate Intake Height to one button (it's been really weird locally, we'll see if it gets fixed)
+- This might be more build's fault, but there's a minor bug related to ball detection in the balltrack
