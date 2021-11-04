@@ -44,5 +44,5 @@ We have a few bugs with the code, some of it may be related to the hardware comp
 - Can't move the robot if the intake is going
 - Finish PID Tuning
 - Set Limelight tuning for determining required velocity
-- Consolidate Intake Height to one button (it's been really weird locally, we'll see if it gets fixed)
+- Consolidate Intake Height to the A Button (it's been really weird locally, we'll see if it gets fixed)
 - This might be more build's fault, but there's a minor bug related to ball detection in the balltrack
