@@ -13,10 +13,6 @@ public class RunIntake extends CommandBase {
 	}
 
 	@Override
-	public void initialize() {
-	}
-
-	@Override
 	public void execute() {
 		intake.spinIntakeWheels(.4);
 	}
@@ -24,10 +20,5 @@ public class RunIntake extends CommandBase {
 	@Override
 	public void end(final boolean interrupted) {
 		intake.spinIntakeWheels(0);
-	}
-
-	@Override
-	public boolean isFinished() {
-		return false;
 	}
 }

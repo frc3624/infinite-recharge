@@ -6,6 +6,10 @@
 
 This code is following the 2021 revision. If you would like to see the code from the 2020 Build Season, refer to [this](https://github.com/frc3624/infinite-recharge/tree/5bcc2d8100bd28aaf7b11671c074b383199bf72c)
 
+This robot code is now finished (moreso abandoned lol) due to the robot breaking during the invitational. The robot is
+scrapped, and we'll update this repository with videos of it functioning. This was the code's state right before the
+invitational.
+
 ## Required Dependencies
 
 This project uses the standard Pheonix Libraries (add the libraries regularly), alongside the Rev Robotics libraries. Adding these libraries is a bit
@@ -36,13 +40,3 @@ This is required if you plan to deploy or edit code for this robot.
 - DPAD DOWN:        Move BallTrack backwards
 - DPAD LEFT:        Move Intake Arm Up
 - DPAD RIGHT:       Move Intake Arm Down
-
-## Notes
-
-We have a few bugs with the code, some of it may be related to the hardware components though.
-
-- Can't move the robot if the intake is going
-- Finish PID Tuning
-- Set Limelight tuning for determining required velocity
-- Consolidate Intake Height to one button (it's been really weird locally, we'll see if it gets fixed)
-- This might be more build's fault, but there's a minor bug related to ball detection in the balltrack

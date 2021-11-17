@@ -8,26 +8,26 @@
 package frc.robot.subsystems.ballhandling;
 
 import static frc.robot.Constants.INTAKE_MOTOR_ID;
-import static frc.robot.Constants.PCM_CAN_ID;
-import static frc.robot.Constants.SOLENOID_ID;
+ import static frc.robot.Constants.PCM_CAN_ID;
+ import static frc.robot.Constants.SOLENOID_ID;
+ import com.revrobotics.CANSparkMax;
+ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+ import edu.wpi.first.wpilibj.Solenoid;
+ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-// Note for anybody who wants to use these. You probably are having issues importing this library. Go to the .json for REVRobotics
-// (this is located in vendordeps) and lower the version by .01. I hate REV Robotics
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-public  class Intake extends SubsystemBase {
+/**
+ * Incredibly simple class. Runs the intake wheels at the front of the robot, and sends the ball in. Thing to note, this
+ * is the only * mechanism which uses a SparkMax. Methods are slightly different, but concept is the same.
+ * 
+ * Note for anybody who wants to use these. You probably are having issues importing this library. Go to the .json for 
+ * REVRobotics (this is located in vendordeps) and lower the version by .01. I hate REV Robotics
+ */
+public class Intake extends SubsystemBase {
 	private final CANSparkMax intakeMotor = new CANSparkMax(INTAKE_MOTOR_ID, MotorType.kBrushless);
 	private final Solenoid liftPiston = new Solenoid(PCM_CAN_ID, SOLENOID_ID);
 
 	public Intake() {
 		liftPiston.set(false);
-	}
-
-	@Override
-	public void periodic() {
 	}
 
 	/**
@@ -39,13 +39,9 @@ public  class Intake extends SubsystemBase {
 	}
 
 	/**
-	 * Method to toggle the solenoid which is attached to the intake.
-	 * Will either draw or release the intake arm
+	 * These two methods should have been consolidated into one method (a toggle method). This could not happen because you can't
+	 * toggle with regular Solenoids properly, you need a DoubleSolenoid. It was all we had on hand though, so ¯\_(ツ)_/¯
 	 */
-	public void toggleIntakePosition() {
-		liftPiston.set(!liftPiston.get());
-	}
-
 	public void intakeUp() {
 		liftPiston.set(true);
 	}

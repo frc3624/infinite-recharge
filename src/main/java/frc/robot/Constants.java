@@ -26,11 +26,16 @@ public final class Constants {
 	 public static final int DRIVE_RIGHT_SLAVE_ID = 4; // Back Right
 
 	// Intake, Conveyor, Shooting
-	 public static final int SHOOTER_MOTOR_ID = 27;
 	 public static final int BALL_TRACK_ID = 7;
 	 public static final int INTAKE_MOTOR_ID = 8;
+	 public static final int SHOOTER_MOTOR_ID = 9;
 	 public static final int PCM_CAN_ID = 0;
 	 public static final int SOLENOID_ID = 0;
+
+	 public static final double kP = .15;
+	 public static final double kI = 0.00002;
+	 public static final double kD = 2.25;
+	 public static final double kF = 0.048;
 	 public static final int kTimeoutMs = 30;
 	
 	// Limit Switches

@@ -1,10 +1,11 @@
 package frc.robot;
 
-import static frc.robot.Constants.BUTTON_B;
- import static frc.robot.Constants.BUTTON_A;
+import static frc.robot.Constants.BUTTON_A;
+ import static frc.robot.Constants.BUTTON_B;
  import static frc.robot.Constants.BUTTON_LB;
  import static frc.robot.Constants.BUTTON_RB;
  import static frc.robot.Constants.BUTTON_X;
+ import static frc.robot.Constants.BUTTON_Y;
  import static frc.robot.Constants.XBOX_1_ID;
  import edu.wpi.first.wpilibj.XboxController;
  import edu.wpi.first.wpilibj2.command.Command;
@@ -19,35 +20,34 @@ import static frc.robot.Constants.BUTTON_B;
  import frc.robot.commands.intake.IntakeDown;
  import frc.robot.commands.intake.IntakeUp;
  import frc.robot.commands.intake.RunBallTrack;
- import frc.robot.commands.intake.RunIntakeSystem;
- import frc.robot.commands.intake.ToggleIntakeHeight;
- import frc.robot.commands.shooting.RunShootingSystem;
+ import frc.robot.commands.intake.RunIntake;
  import frc.robot.commands.shooting.Shoot;
  import frc.robot.commands.speedshift.DefenseGear;
  import frc.robot.commands.speedshift.HighGear;
  import frc.robot.commands.speedshift.LowGear;
  import frc.robot.subsystems.Drive;
- import frc.robot.subsystems.ballhandling.Intake;
  import frc.robot.subsystems.Limelight;
  import frc.robot.subsystems.ballhandling.BallTrack;
- import frc.robot.subsystems.ballhandling.Shooter;
+ import frc.robot.subsystems.ballhandling.Intake;
+ import frc.robot.subsystems.ballhandling.Shooter; 
+ //  import frc.robot.commands.shooting.RunShootingSystem;
+
 
 public class RobotContainer {
 	// Limelight
 	 private final Limelight limelight = new Limelight();
 
 	// Controllers
-	 private static XboxController driver1 = new XboxController(XBOX_1_ID);
+	 private static final XboxController driver1 = new XboxController(XBOX_1_ID);
 
 	// Shooting Buttons
-	 //private final JoystickButton intakeHeightButton = new JoystickButton(driver1, BUTTON_A);
 	 private final JoystickButton shootButton = new JoystickButton(driver1, BUTTON_X);
 	 private final JoystickButton intakeButton = new JoystickButton(driver1, BUTTON_B);
 	 private final DPadButton ballTrackOutButton = new DPadButton(driver1, DPadDirection.DOWN);
 	 private final DPadButton ballTrackInButton = new DPadButton(driver1, DPadDirection.UP);
-	 private final JoystickButton toggleIntakeHeightButton = new JoystickButton(driver1, BUTTON_A);
-	 private final DPadButton intakeUpButton = new DPadButton(driver1, DPadDirection.LEFT);
-	 private final DPadButton intakeDownButton = new DPadButton(driver1, DPadDirection.RIGHT);
+
+	 private final JoystickButton intakeUpButton = new JoystickButton(driver1, BUTTON_Y);
+	 private final JoystickButton intakeDownButton = new JoystickButton(driver1, BUTTON_A);
 
 	// Speed Shift Buttons
 	 private final TriggerButton lowGearButton = new TriggerButton(driver1, Trigger.RIGHT_TRIGGER, .9);
@@ -67,22 +67,18 @@ public class RobotContainer {
 	 private final HighGear highGear = new HighGear(drive); 
 	 private final ConditionalCommand speedShift = new ConditionalCommand(lowGear, highGear, drive::isHighGear);
 	
-	/**
-	 * RunShootingSystem is a ParallelCommandGroup encompassing AdvanceBallTrack and RunIntake
-	 * Keeping RunBallTrack because the auto unjamming is disabled for now
-	 */
+	
 	// Shooting, Intake, and Ball Track Commands
+	 // These commands were supposed to function in ParallelCommandGroups but the robot was broken
+	 private final Shoot shoot = new Shoot(shooter, limelight);
 	 private final RunBallTrack runBallTrackInwards = new RunBallTrack(ballTrack, 1);
 	 private final RunBallTrack runBallTrackOutwards = new RunBallTrack(ballTrack, -1);
-	 private final RunIntakeSystem intakeSystem = new RunIntakeSystem(intake, ballTrack);
-	 private final Shoot shoot = new Shoot(shooter, limelight);
-	 private final RunShootingSystem shootingSystem = new RunShootingSystem(ballTrack, intake, shooter, limelight);
-	 private final ToggleIntakeHeight toggleIntakeHeight = new ToggleIntakeHeight(intake);
 	 private final IntakeUp intakeUp = new IntakeUp(intake);
 	 private final IntakeDown intakeDown = new IntakeDown(intake);
+	 private final RunIntake intakeSystem = new RunIntake(intake);
 
 	// Our bs auto command just so we get points
-	 private final DriveStraight driveStraight = new DriveStraight(drive, .5, 3); 
+	 private final DriveStraight driveStraight = new DriveStraight(drive, .5, 2); 
 
 	public RobotContainer() {
 		configureButtonBindings();
@@ -98,7 +94,6 @@ public class RobotContainer {
 		intakeButton.toggleWhenPressed(intakeSystem);
 		ballTrackOutButton.whileHeld(runBallTrackOutwards);
 		ballTrackInButton.whileHeld(runBallTrackInwards);
-		toggleIntakeHeightButton.whenPressed(toggleIntakeHeight);
 		intakeUpButton.whenPressed(intakeUp);
 		intakeDownButton.whenPressed(intakeDown);
 	}

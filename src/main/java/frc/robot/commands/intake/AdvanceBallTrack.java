@@ -10,11 +10,7 @@ public class AdvanceBallTrack extends CommandBase {
 		this.ballTrack = ballTrack;
 		addRequirements(ballTrack);
 	}
-
-	@Override
-	public void initialize() {
-	}
-
+	
 	@Override
 	public void execute() {
 		ballTrack.advanceToNextPosition(ballTrack.getCurrentPosition());
@@ -23,10 +19,5 @@ public class AdvanceBallTrack extends CommandBase {
 	@Override
 	public void end(final boolean interrupted) {
 		ballTrack.setMotorSpeed(0);
-	}
-
-	@Override
-	public boolean isFinished() {
-		return false;
 	}
 }

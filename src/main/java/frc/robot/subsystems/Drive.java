@@ -1,14 +1,21 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.DRIVE_LEFT_MASTER_ID;
-import static frc.robot.Constants.DRIVE_LEFT_SLAVE_ID;
-import static frc.robot.Constants.DRIVE_RIGHT_MASTER_ID;
-import static frc.robot.Constants.DRIVE_RIGHT_SLAVE_ID;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+ import static frc.robot.Constants.DRIVE_LEFT_SLAVE_ID;
+ import static frc.robot.Constants.DRIVE_RIGHT_MASTER_ID;
+ import static frc.robot.Constants.DRIVE_RIGHT_SLAVE_ID;
+ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/**
+ * This year's Drive was interesting in a few ways. We used a West Coast drive system, which was functionally the same
+ * in regards to code. The interesting part though, is in regards to our motors. Let me put this bluntly. The Falcons
+ * are f*cking FAST. WAY to fast for our drivers to accurately handle for the majority of our operation. We utilized
+ * software speed shifting as opposed to traditional gear based shifting for this year. You can look at how we
+ * implemented it below in the code through the use of enums.
+ */
 public class Drive extends SubsystemBase {
 
 	public enum GearState {

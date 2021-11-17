@@ -12,10 +12,6 @@ public class EmptyBallTrack extends CommandBase {
 	}
 
 	@Override
-	public void initialize() {
-	}
-
-	@Override
 	public void execute() {
 		ballTrack.setMotorSpeed(.6);
 	}
@@ -27,6 +23,6 @@ public class EmptyBallTrack extends CommandBase {
 
 	@Override
 	public boolean isFinished() {
-		return false;//return !ballTrack.hasBalls(); 
+		return !ballTrack.hasBalls(); 
 	}
 }
